@@ -1,3 +1,81 @@
 [gd_scene format=3 uid="uid://bfmd7upcpxek"]
 
+[sub_resource type="Gradient" id="Gradient_hfref"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_747mh"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cx2mq"]
+noise = SubResource("FastNoiseLite_747mh")
+color_ramp = SubResource("Gradient_hfref")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_27p8p"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.5,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"flat_terrain_normals": false,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise_texture": SubResource("NoiseTexture2D_cx2mq"),
+&"projection_threshold": 0.8
+}
+show_checkered = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwukr"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_ej6jh"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_mwukr")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_7gusv"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_ej6jh")])
+
+[sub_resource type="BoxMesh" id="BoxMesh_uapim"]
+
 [node name="WarringStatesScene" type="Node3D" unique_id=1445162018]
+
+[node name="Environments" type="Node" parent="." unique_id=1907029259]
+
+[node name="Ground" type="Terrain3D" parent="Environments" unique_id=1640469499]
+material = SubResource("Terrain3DMaterial_27p8p")
+assets = SubResource("Terrain3DAssets_7gusv")
+show_checkered = true
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environments/Ground" unique_id=1472872732]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_uapim")
