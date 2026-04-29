@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dyl68nf1iibyp"]
+
+[ext_resource type="PackedScene" uid="uid://dcc234vwrmq2j" path="res://ArtRes/ScenePart/chengqiang/12.fbx" id="1_vyfp1"]
+
+[node name="12" unique_id=275961280 instance=ExtResource("1_vyfp1")]
+
+[node name="Castle_Wall_A_Straight" parent="." index="0" unique_id=1841453426]
+transform = Transform3D(8.945197, 0, 0, 0, -1.0663506e-06, 8.945196, 0, -8.945196, -1.0663506e-06, 0, 0, 0)

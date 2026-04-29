@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bv1gc5nh2pdar"]
+
+[ext_resource type="PackedScene" uid="uid://7s1s6jkqhwx3" path="res://ArtRes/ScenePart/chengqiang/2.fbx" id="1_rcxiv"]
+
+[node name="2" unique_id=1086485158 instance=ExtResource("1_rcxiv")]
+
+[node name="Castle_Wall_F_Corner" parent="." index="0" unique_id=1286902402]
+transform = Transform3D(8.945197, 0, 0, 0, -1.0663506e-06, 8.945196, 0, -8.945196, -1.0663506e-06, 0, 0, 0)
