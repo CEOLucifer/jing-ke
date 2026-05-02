@@ -1,10 +1,12 @@
 using Godot;
 
-public class Command_Destroy : Command
+namespace command;
+
+public class Destroy : Command
 {
     public IDestroyable target;
 
-    public Command_Destroy(IDestroyable target)
+    public Destroy(IDestroyable target)
     {
         this.target = target;
     }

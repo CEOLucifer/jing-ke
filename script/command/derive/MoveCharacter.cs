@@ -1,6 +1,8 @@
 using Godot;
 
-public class Command_MoveCharacter : Command
+namespace command;
+
+public class MoveCharacter : Command
 {
     public Character character;
     public Vector3 targetPos;
