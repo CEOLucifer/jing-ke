@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bufomy2cb21eb"]
+
+[ext_resource type="Script" uid="uid://cy75x0qos23vj" path="res://script/ui/CtrlPanel.cs" id="1_h0kag"]
+[ext_resource type="PackedScene" uid="uid://c6youmgppe4oh" path="res://prefab/ui/ctrl_panel/skill.tscn" id="2_8rmvf"]
+
+[node name="CtrlPanel" type="Control" unique_id=1030255760 node_paths=PackedStringArray("grid_container_skill")]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_h0kag")
+grid_container_skill = NodePath("panel_skill/GridContainer_skill")
+scene_ui_skill = ExtResource("2_8rmvf")
+
+[node name="panel_skill" type="Panel" parent="." unique_id=826041513]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -446.5
+offset_top = -267.0
+offset_right = 446.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GridContainer_skill" type="GridContainer" parent="panel_skill" unique_id=1088053316]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10

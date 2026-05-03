@@ -1,0 +1,12 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://s7fxbcls0xtt"]
+
+[ext_resource type="Animation" uid="uid://cuwpn6ejej2ut" path="res://art/anim/human/idle.res" id="1_tdrt7"]
+[ext_resource type="Animation" uid="uid://xx1jsjvbesds" path="res://art/anim/human/slow_run.res" id="2_ha1k8"]
+[ext_resource type="Animation" uid="uid://b8qeo27ro7w1u" path="res://art/anim/human/jump.res" id="2_w2jis"]
+
+[resource]
+_data = {
+&"idle": ExtResource("1_tdrt7"),
+&"jump": ExtResource("2_w2jis"),
+&"slow_run": ExtResource("2_ha1k8")
+}

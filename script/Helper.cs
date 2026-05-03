@@ -24,4 +24,17 @@ public static class Helper
         }
         return null;
     }
+
+    public static T get_child<T>(this Node self) where T : Node
+    {
+        var children = self.GetChildren();
+        foreach (var each in children)
+        {
+            if (each is T res)
+            {
+                return res;
+            }
+        }
+        return null;
+    }
 }

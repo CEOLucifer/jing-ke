@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c6youmgppe4oh"]
+
+[ext_resource type="Script" uid="uid://bttucmdoqwdlh" path="res://script/ui/Skill.cs" id="1_4pnc2"]
+
+[node name="skill" type="Control" unique_id=919884100 node_paths=PackedStringArray("texture_rect")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+size_flags_horizontal = 3
+script = ExtResource("1_4pnc2")
+texture_rect = NodePath("TextureRect")
+
+[node name="Button" type="Button" parent="." unique_id=1423557869]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=409657717]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class CameraCtrl : Node
+public partial class CameraCtrl : SingletonNode<CameraCtrl>
 {
 	[Export]
 	public Camera3D camera;
@@ -19,6 +19,7 @@ public partial class CameraCtrl : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 		if (camera == null)
 		{
 			camera = GetParent() as Camera3D;

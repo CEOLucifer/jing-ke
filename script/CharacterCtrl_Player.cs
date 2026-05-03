@@ -21,40 +21,73 @@ public partial class CharacterCtrl_Player : Node
 			character = this.get_sibling<Character>();
 
 		GameCtrl.Instance.model.character = character;
+
 	}
 
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		ProcessMouse();
+		process_mouse();
 	}
 
-	private void ProcessMouse()
+	private void process_mouse()
 	{
 		if (Input.IsActionJustPressed("left_click"))
 		{
-			var mouse_pos = GetViewport().GetMousePosition();
-			var from = camera.ProjectRayOrigin(mouse_pos);
-			var to = from + camera.ProjectRayNormal(mouse_pos) * 100;
-			var query = PhysicsRayQueryParameters3D.Create(from, to);
-			query.CollideWithBodies = true;
-
-			var space_state = camera.GetWorld3D().DirectSpaceState;
-			var result = space_state.IntersectRay(query);
-
-			if (result.Count > 0)
+			// 进行鼠标射线检测
+			var res = GameView.Instance.get_mouse_raycast_result();
+			if (res.has_value)
 			{
-				var hit_position = (Vector3)result["position"];
-				var collider = result["collider"];
-				GD.Print($"Hit: {hit_position}, {collider}");
+				var node = res.collider.AsGodotObject() as Node;
 
-				character.MoveTo(hit_position);
+				if (node.Name == "Terrain3D")
+				{
+					// 执行移动玩家命令
+					var command = new command.MoveCharacter();
+					command.character = character;
+					command.target_pos = res.hit_position;
+					GameCtrl.Instance.command_queue.Push(command);
+				}
+
+				// 检测到的是Physics body
+				var physics_body = node as PhysicsBody3D;
+				if (physics_body != null)
+				{
+					// character.move_to(hit_position);
+					// 执行移动玩家命令
+					var command = new command.MoveCharacter();
+					command.character = character;
+					command.target_pos = res.hit_position;
+					GameCtrl.Instance.command_queue.Push(command);
+
+					// 检测到的是角色
+					var character_body = physics_body as CharacterBody3D;
+					if (character_body != null)
+					{
+						// 进入对话
+						var command_chat = new command.Chat();
+						command_chat.I = character;
+						command_chat.you = character_body.get_child<Character>();
+						GameCtrl.Instance.command_queue.Push(command_chat);
+					}
+				}
+
+
 			}
-			else
-			{
-				GD.Print("count = 0");
-			}
+		}
+
+
+
+		if (Input.IsActionJustPressed("right_click"))
+		{
+			// 测试：向前跳跃
+			var com = new command.Jump();
+			com.character = character;
+			var pos = character.GetParent<Node3D>().Position;
+			pos += character.GetParent<Node3D>().Transform.Basis.Z.Normalized() * 4;
+			com.target_pos = pos;
+			GameCtrl.Instance.command_queue.Push(com);
 		}
 	}
 

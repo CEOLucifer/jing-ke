@@ -9,4 +9,8 @@ public interface ICommand
 
     public void Done();
 
+    public void Process();
+
+    public void Process_physics();
+
 }
