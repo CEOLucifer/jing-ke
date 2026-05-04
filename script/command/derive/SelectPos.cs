@@ -9,6 +9,12 @@ public class SelectPos : Command
 
     private Vector3 pos;
 
+    public override void Do(Context context)
+    {
+        base.Do(context);
+        GD.Print($"选择位置");
+    }
+
     public override void Process()
     {
         base.Process();

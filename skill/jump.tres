@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://d1xynbp7hy507"]
+[gd_resource type="Resource" format=3 uid="uid://d1xynbp7hy507"]
 
-[ext_resource type="Script" uid="uid://dvhtg3s0odqq2" path="res://script/skill/Skill.cs" id="1_23tdu"]
+[ext_resource type="Script" uid="uid://b2txvfpkuej24" path="res://script/skill/Jump.cs" id="1_0o77i"]
 [ext_resource type="Texture2D" uid="uid://divw8ahq1fj41" path="res://icon.svg" id="2_0o77i"]
 
 [resource]
-script = ExtResource("1_23tdu")
+script = ExtResource("1_0o77i")
 id = 1
 name = "跳跃"
 description = "命令该角色跳跃到指定位置"

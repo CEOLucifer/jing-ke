@@ -29,8 +29,13 @@ public partial class BagCtrl : SingletonNode<BagCtrl>
     public CanvasLayer canvas_layer;
 
 
-    public void set_item_float(ui.Item ui_item)
+    public void on_item_pressed(ui.Item ui_item)
     {
+        if (item_floating != null)
+        {
+            return;
+        }
+
         // 跟随鼠标
         ui_item.GetParent().RemoveChild(ui_item);
         ui_item.is_follow_mouse = true;
@@ -124,7 +129,7 @@ public partial class BagCtrl : SingletonNode<BagCtrl>
                 canvas_layer.AddChild(bag_panel);
 
                 // 背包界面传入玩家背包数据
-                bag_panel.arrange(bag);
+                bag_panel.set_bag(bag);
             }
             else
             {
@@ -137,13 +142,15 @@ public partial class BagCtrl : SingletonNode<BagCtrl>
                 if (item_floating != null)
                 {
                     item_floating.QueueFree();
+                    item_floating = null;
                 }
             }
         }
 
+        // 测试
         if (Input.IsActionJustPressed("n"))
         {
-            var item = ResourceLoader.Load("wwz/item/hp_potion.tres", cacheMode: ResourceLoader.CacheMode.Ignore) as Item;
+            var item = ResourceLoader.Load("res://item/test.tres", cacheMode: ResourceLoader.CacheMode.Ignore) as Item;
             GameCtrl.Instance.model.character.bag.add(item);
         }
 

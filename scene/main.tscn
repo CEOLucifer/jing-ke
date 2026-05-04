@@ -4,12 +4,16 @@
 [ext_resource type="Script" uid="uid://dewyrhjvlqofc" path="res://script/GameCtrl.cs" id="1_wscrc"]
 [ext_resource type="Script" uid="uid://b6jvppfbkw606" path="res://script/bag/BagCtrl.cs" id="2_wscrc"]
 [ext_resource type="Script" uid="uid://dks4tryjgfh5d" path="res://script/llm/Agent.cs" id="4_hybxs"]
+[ext_resource type="PackedScene" uid="uid://so5v5ret2ldj" path="res://prefab/ui/bag_panel/bag_panel.tscn" id="4_v2gmf"]
 [ext_resource type="Script" uid="uid://oyw8fq2aesws" path="res://script/command/CommandQueue.cs" id="5_v2gmf"]
 [ext_resource type="Script" uid="uid://b7g2y3515ge1o" path="res://script/GameView.cs" id="6_jcbur"]
 [ext_resource type="Script" uid="uid://buh6cddjkykg2" path="res://addons/open-world-database/src/OWDBPosition.gd" id="7_smf0o"]
+[ext_resource type="PackedScene" uid="uid://bufomy2cb21eb" path="res://prefab/ui/ctrl_panel/ctrl_panel.tscn" id="7_wscrc"]
 [ext_resource type="Script" uid="uid://bsbi78yk48srx" path="res://script/CameraCtrl.cs" id="8_tv8i1"]
 [ext_resource type="PackedScene" uid="uid://cy5u37cfoi84f" path="res://prefab/human.tscn" id="9_0vlqb"]
+[ext_resource type="Resource" uid="uid://btp2x2tbtnsrk" path="res://skill/move.tres" id="9_hybxs"]
 [ext_resource type="Script" uid="uid://b61bjuvpvfjwu" path="res://script/CharacterCtrl_Player.cs" id="10_gjnwh"]
+[ext_resource type="Resource" uid="uid://d1xynbp7hy507" path="res://skill/jump.tres" id="10_v2gmf"]
 [ext_resource type="Script" uid="uid://b46e3mat8dx5" path="res://addons/open-world-database/src/open_world_database.gd" id="11_fdqew"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_k65ib"]
@@ -79,17 +83,18 @@ lod0_range = 128.0
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_838f7"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_5als8")])
 
-[sub_resource type="BoxMesh" id="BoxMesh_wscrc"]
+[sub_resource type="BoxMesh" id="BoxMesh_jcbur"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_mswub"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_smf0o"]
 
 [node name="Main" type="Node3D" unique_id=1738170462]
 
 [node name="ctrl" type="Node" parent="." unique_id=1057322322]
 
-[node name="game_ctrl" type="Node" parent="ctrl" unique_id=191930278 node_paths=PackedStringArray("model", "bag_ctrl", "agent", "command_queue")]
+[node name="game_ctrl" type="Node" parent="ctrl" unique_id=191930278 node_paths=PackedStringArray("model", "view", "bag_ctrl", "agent", "command_queue")]
 script = ExtResource("1_wscrc")
 model = NodePath("../game_model")
+view = NodePath("../game_view")
 bag_ctrl = NodePath("../bag_ctrl")
 agent = NodePath("../agent")
 command_queue = NodePath("../command_queue")
@@ -102,6 +107,7 @@ metadata/_custom_type_script = "uid://0eqffcym8tke"
 
 [node name="bag_ctrl" type="Node" parent="ctrl" unique_id=1935624777 node_paths=PackedStringArray("canvas_layer")]
 script = ExtResource("2_wscrc")
+scene_bag_panel = ExtResource("4_v2gmf")
 canvas_layer = NodePath("../../CanvasLayer")
 metadata/_custom_type_script = "uid://b6jvppfbkw606"
 
@@ -111,10 +117,13 @@ script = ExtResource("4_hybxs")
 [node name="command_queue" type="Node" parent="ctrl" unique_id=600143649]
 script = ExtResource("5_v2gmf")
 
-[node name="game_view" type="Node" parent="ctrl" unique_id=1670800014]
+[node name="game_view" type="Node" parent="ctrl" unique_id=1670800014 node_paths=PackedStringArray("ctrl_panel")]
 script = ExtResource("6_jcbur")
+ctrl_panel = NodePath("../../CanvasLayer/CtrlPanel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2084280077]
+
+[node name="CtrlPanel" parent="CanvasLayer" unique_id=1030255760 instance=ExtResource("7_wscrc")]
 
 [node name="player" parent="." unique_id=116128371 instance=ExtResource("9_0vlqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3020205, 0, -4.2761374)
@@ -128,7 +137,7 @@ bones/3/rotation = Quaternion(0.057711728, 2.195823e-06, 3.2850135e-06, 0.998333
 bones/4/rotation = Quaternion(0.0028277058, 1.5881932e-22, -1.3415485e-20, 0.999996)
 bones/5/rotation = Quaternion(-8.271806e-25, -2.646978e-23, 3.3881318e-21, 1)
 bones/7/rotation = Quaternion(-0.45383507, -0.5448494, 0.5511389, -0.43979415)
-bones/8/rotation = Quaternion(-0.010451822, -0.0010627159, 0.10115072, 0.99481565)
+bones/8/rotation = Quaternion(-0.010451819, -0.0010627186, 0.10115047, 0.99481565)
 bones/9/rotation = Quaternion(-3.3881318e-21, 0, 0, 1)
 bones/10/rotation = Quaternion(-3.3881318e-21, 1.6155871e-27, 1.323489e-23, 1)
 bones/11/rotation = Quaternion(0.25189495, -0.059464104, 0.22192329, 0.9400867)
@@ -143,11 +152,11 @@ bones/21/rotation = Quaternion(-3.3881318e-21, -8.077936e-28, 1.323489e-23, 1)
 bones/23/rotation = Quaternion(5.5678777e-07, 2.6699558e-09, 4.5245342e-06, 1)
 bones/24/rotation = Quaternion(-2.3068094e-06, 1.8618596e-11, -8.071095e-06, 1)
 bones/25/rotation = Quaternion(6.7762636e-21, -2.0679515e-25, -2.1175824e-22, 1)
-bones/27/rotation = Quaternion(2.852112e-06, 3.06901e-09, 0.00014079857, 1)
-bones/28/rotation = Quaternion(-5.9544877e-06, 2.1905604e-09, -0.000367884, 0.99999994)
-bones/29/rotation = Quaternion(3.6591582e-06, 8.4090884e-10, 0.00022980935, 0.99999994)
+bones/27/rotation = Quaternion(2.8521122e-06, -3.0577734e-09, 0.0001410514, 1)
+bones/28/rotation = Quaternion(-5.954488e-06, 2.1905608e-09, -0.000367884, 0.99999994)
+bones/29/rotation = Quaternion(3.6591703e-06, 8.409115e-10, 0.00022980936, 1)
 bones/31/rotation = Quaternion(0.45383754, -0.54484725, 0.55114, 0.43979272)
-bones/32/rotation = Quaternion(-0.010455412, 0.0010630623, -0.101149395, 0.99481577)
+bones/32/rotation = Quaternion(-0.010455412, 0.0010630626, -0.101149395, 0.99481577)
 bones/33/rotation = Quaternion(6.7762636e-21, 0, -2.646978e-23, 1)
 bones/34/rotation = Quaternion(3.3881318e-21, 0, -2.646978e-23, 1)
 bones/35/rotation = Quaternion(0.251895, 0.05946429, -0.2219235, 0.9400866)
@@ -163,8 +172,8 @@ bones/47/rotation = Quaternion(5.567889e-07, 7.2544912e-09, -4.8035754e-06, 1)
 bones/48/rotation = Quaternion(1.8135419e-11, 4.0535936e-17, 8.071083e-06, 1)
 bones/49/rotation = Quaternion(-3.1554434e-30, -4.135903e-25, -1.880791e-37, 1)
 bones/51/rotation = Quaternion(5.5678527e-07, 7.2554216e-09, -3.1319742e-06, 1)
-bones/52/rotation = Quaternion(1.4594484e-11, -4.9759665e-17, 1.0394375e-05, 1)
-bones/53/rotation = Quaternion(-1.4500284e-11, 4.8883608e-17, -1.0428465e-05, 1)
+bones/52/rotation = Quaternion(-2.0940528e-21, 0, 1.0394375e-05, 1)
+bones/53/rotation = Quaternion(1.0671668e-21, 0, -1.0428465e-05, 1)
 bones/55/rotation = Quaternion(2.0251724e-05, -0.0063501773, 0.99997544, -0.002969642)
 bones/56/rotation = Quaternion(-0.01811431, 0.00018249365, -0.005920146, 0.9998184)
 bones/57/rotation = Quaternion(0.5405498, 0.014366474, 0.024951037, 0.84081924)
@@ -173,6 +182,9 @@ bones/60/rotation = Quaternion(-1.7972287e-05, -0.0063338024, 0.99997526, 0.0030
 bones/61/rotation = Quaternion(-0.018147074, -0.00018249397, 0.00592015, 0.9998178)
 bones/62/rotation = Quaternion(0.5405636, -0.014366038, -0.024951223, 0.84081036)
 bones/63/rotation = Quaternion(0.2277087, 0.032119606, 0.0152579015, 0.9730798)
+
+[node name="Character" parent="player" index="1" unique_id=1191821884]
+skills = Array[Object]([ExtResource("9_hybxs"), ExtResource("10_v2gmf")])
 
 [node name="character_ctrl_player" type="Node" parent="player" unique_id=667480018 node_paths=PackedStringArray("camera", "character")]
 script = ExtResource("10_gjnwh")
@@ -194,43 +206,43 @@ metadata/_edit_lock_ = true
 script = ExtResource("11_fdqew")
 metadata/_custom_type_script = "uid://b46e3mat8dx5"
 
-[node name="buildings" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=2110307826]
-metadata/_owd_uid = "buildings"
-
-[node name="platform" type="Node3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings" unique_id=1273632225]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5124631, 0, -0.23964596)
-metadata/_owd_uid = "platform"
-metadata/_owd_last_scale = Vector3(1, 1, 1)
-metadata/_owd_last_size = 13.079946
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=1755630051]
-transform = Transform3D(12.579946, 0, 0, 0, 1.4636943, 0, 0, 0, 8.185469, 6.5386133, 0, 8.844654)
-mesh = SubResource("BoxMesh_wscrc")
-metadata/_owd_uid = "MeshInstance3D"
-metadata/_owd_last_scale = Vector3(12.579946, 1.4636943, 8.185469)
-metadata/_owd_last_size = 12.579946
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=1510151188]
-transform = Transform3D(5.546094, 0, 0, 0, 0.39546758, 0.9506162, 0, -0.20274568, 1.8542339, 7.057754, -0.21704096, 2.8912678)
-mesh = SubResource("PlaneMesh_mswub")
-metadata/_owd_uid = "MeshInstance3D2"
-metadata/_owd_last_scale = Vector3(5.546094, 0.44441018, 2.0837116)
-metadata/_owd_last_size = 11.092188
-
-[node name="npc" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=1036565782]
+[node name="npc" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=1898489228]
 metadata/_owd_uid = "npc"
 
-[node name="human2" type="CharacterBody3D" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=1999333749 instance=ExtResource("9_0vlqb")]
+[node name="human2" type="CharacterBody3D" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=1936094433 instance=ExtResource("9_0vlqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1985197, 0, -0.6721811)
 metadata/_owd_uid = "human2"
 metadata/_owd_last_scale = Vector3(1, 1, 1)
 metadata/_owd_last_size = 1.9468498
 
-[node name="human3" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=222971487 instance=ExtResource("9_0vlqb")]
+[node name="human3" type="CharacterBody3D" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=164184598 instance=ExtResource("9_0vlqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7112422, 1.0711832, 10.211849)
 metadata/_owd_uid = "human3"
 metadata/_owd_last_scale = Vector3(1, 1, 1)
 metadata/_owd_last_size = 1.9468498
+
+[node name="buildings" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=420672644]
+metadata/_owd_uid = "buildings"
+
+[node name="platform" type="Node3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings" unique_id=1686499833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5124631, 0, -0.23964596)
+metadata/_owd_uid = "platform"
+metadata/_owd_last_scale = Vector3(1, 1, 1)
+metadata/_owd_last_size = 13.079946
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=1916762538]
+transform = Transform3D(12.579946, 0, 0, 0, 1.4636943, 0, 0, 0, 8.185469, 6.5386133, 0, 8.844654)
+mesh = SubResource("BoxMesh_jcbur")
+metadata/_owd_uid = "MeshInstance3D"
+metadata/_owd_last_scale = Vector3(12.579946, 1.4636943, 8.185469)
+metadata/_owd_last_size = 12.579946
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=422979198]
+transform = Transform3D(5.546094, 0, 0, 0, 0.39546758, 0.9506162, 0, -0.20274568, 1.8542339, 7.057754, -0.21704096, 2.8912678)
+mesh = SubResource("PlaneMesh_smf0o")
+metadata/_owd_uid = "MeshInstance3D2"
+metadata/_owd_last_scale = Vector3(5.546094, 0.44441018, 2.0837116)
+metadata/_owd_last_size = 11.092188
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1748659682]
 transform = Transform3D(1, 0, 0, 0, 0.94635075, 0.32314125, 0, -0.32314125, 0.94635075, 0, 26.265165, 0)

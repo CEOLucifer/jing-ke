@@ -2,30 +2,26 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// 背包
+/// </summary>
 public class Bag
 {
-	public Vector2I colRow = new(10, 5);
+	/// <summary>
+	/// 列数-行数
+	/// </summary>
+	public Vector2I col_row = new(10, 5);
 	public List<ItemAdapter> item_adapters = new();
-
-	public struct Slot
-	{
-		public bool is_occupied = false;
-
-		public Slot()
-		{
-		}
-	}
-
 	public List<List<Slot>> slots;
 
 	public Bag()
 	{
 		// slots
 		slots = new();
-		for (var col = 0; col < colRow.X; ++col)
+		for (var col = 0; col < col_row.X; ++col)
 		{
 			var col_slot = new List<Slot>();
-			for (var row = 0; row < colRow.Y; ++row)
+			for (var row = 0; row < col_row.Y; ++row)
 			{
 				col_slot.Add(new());
 			}
@@ -115,6 +111,8 @@ public class Bag
 				slots[col][row] = new_slot;
 			}
 		}
+
+		GD.Print($"添加物品：{adapter.item}");
 	}
 
 	public void remove(Item item)
@@ -138,9 +136,9 @@ public class Bag
 	/// <returns>如果没有位置可放置，为null</returns>
 	private Vector2I? calculate_coord(Item item)
 	{
-		for (var col = 0; col < colRow.X; col++)
+		for (var col = 0; col < col_row.X; col++)
 		{
-			for (var row = 0; row < colRow.Y; row++)
+			for (var row = 0; row < col_row.Y; row++)
 			{
 				if (can_place(item, new Vector2I(col, row)))
 				{
@@ -153,7 +151,7 @@ public class Bag
 
 	public bool can_place(Item item, Vector2I coord)
 	{
-		if (coord.X + item.volumn.X > colRow.X || coord.Y + item.volumn.Y > colRow.Y)
+		if (coord.X + item.volumn.X > col_row.X || coord.Y + item.volumn.Y > col_row.Y)
 		{
 			return false;
 		}
@@ -197,8 +195,8 @@ public class Bag
 
 
 	/// <summary>
-    /// 物品适配器。物品在背包中存在“坐标”。
-    /// </summary>
+	/// 物品适配器。物品在背包中存在“坐标”。
+	/// </summary>
 	public class ItemAdapter
 	{
 		/// <summary>
@@ -211,6 +209,16 @@ public class Bag
 		/// </summary>
 		public Vector2I coord;
 	}
+
+	public struct Slot
+	{
+		public bool is_occupied = false;
+
+		public Slot()
+		{
+		}
+	}
+
 }
 
 

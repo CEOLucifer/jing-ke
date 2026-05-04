@@ -29,5 +29,10 @@ public partial class CtrlPanel : Control
     {
         var ui_skill = scene_ui_skill.Instantiate() as ui.Skill;
         grid_container_skill.AddChild(ui_skill);
+        ui_skill.texture_rect.Texture = skill.texture;
+        ui_skill.btn.Pressed += () =>
+        {
+            skill.use(character);  
+        };
     }
 }

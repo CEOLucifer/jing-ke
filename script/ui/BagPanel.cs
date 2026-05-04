@@ -13,15 +13,15 @@ public partial class BagPanel : Control
  	点击物品，拿起物品，读取格子占用数据，放下物品，修改数据
 	*/
 
-	private Vector2I colRow = new(10, 5);
 	[Export]
-	public PackedScene scene_bag_panel_slot;
+	private Vector2I col_row = new(10, 5);
+	[Export]
+	public PackedScene scene_slot;
 	[Export]
 	public GridContainer grid_container;
 	[Export]
 	public Control panel;
-
-	public List<List<Control>> slots;
+	public List<List<Control>> slots = new();
 	[Export]
 	public PackedScene scene_item;
 
@@ -32,15 +32,49 @@ public partial class BagPanel : Control
 
 	public Vector2 SlotSize => slots[0][0].Size;
 
+	public Vector2I ColRow
+	{
+		get => col_row;
+		set
+		{
+			col_row = value;
+			refresh_grid();
+		}
+	}
+
+	private void refresh_grid()
+	{
+		if (grid_container == null || scene_slot == null)
+			return;
+
+		// 1. 更新 GridContainer 设置
+		grid_container.Columns = col_row.X;
+
+		// 2. 清理旧格子
+		slots.Clear();
+		var children = grid_container.GetChildren();
+		foreach (var child in children)
+		{
+			child.QueueFree();
+		}
+
+		// 3. 实例化新格子
+		var total_count = col_row.X * col_row.Y;
+		for (var i = 0; i < total_count; ++i)
+		{
+			var slot = scene_slot.Instantiate();
+			grid_container.AddChild(slot);
+		}
+
+		// 4. 刷新内部数据
+		collect_slots();
+	}
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// 收集slots;
-		collect_slots();
-		// print_slots_name();
-
-
+		refresh_grid();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,14 +84,13 @@ public partial class BagPanel : Control
 
 	private void collect_slots()
 	{
-		slots = new List<List<Control>>();
 		var children = grid_container.GetChildren();
-		for (var col = 0; col < colRow.X; col++)
+		for (var col = 0; col < col_row.X; col++)
 		{
 			var col_list = new List<Control>();
-			for (var row = 0; row < colRow.Y; row++)
+			for (var row = 0; row < col_row.Y; row++)
 			{
-				var index = row * colRow.X + col;
+				var index = row * col_row.X + col;
 				col_list.Add(children[index] as Control); // todo：index越界
 			}
 			slots.Add(col_list);
@@ -68,7 +101,7 @@ public partial class BagPanel : Control
 	/// 根据背包内容来布局
 	/// </summary>
 	/// <param name="bag"></param>
-	public void arrange(Bag bag)
+	public void set_bag(Bag bag)
 	{
 		this.bag = bag;
 
@@ -79,17 +112,20 @@ public partial class BagPanel : Control
 
 	private void _arrange()
 	{
-		var item_adapters = bag.item_adapters;
-		for (var i = 0; i < item_adapters.Count; ++i)
+		if (bag != null)
 		{
-			var ui_item = scene_item.Instantiate() as ui.Item;
-			var item_adpater = item_adapters[i];
-			set_item(ui_item, item_adpater);
+			var item_adapters = bag.item_adapters;
+			for (var i = 0; i < item_adapters.Count; ++i)
+			{
+				var ui_item = scene_item.Instantiate() as ui.Item;
+				var item_adpater = item_adapters[i];
+				set_item(ui_item, item_adpater);
+			}
 		}
 
 	}
 
-	public void set_item(Item ui_item, Bag.ItemAdapter item_adpater)
+	public void set_item(ui.Item ui_item, Bag.ItemAdapter item_adpater)
 	{
 		// 调整大小
 		ui_item.Size = new Vector2(SlotSize.X * item_adpater.item.volumn.X, SlotSize.Y * item_adpater.item.volumn.Y);

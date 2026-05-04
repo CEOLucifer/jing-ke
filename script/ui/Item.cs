@@ -21,7 +21,7 @@ public partial class Item : Control
 
         btn.Pressed += () =>
         {
-            BagCtrl.Instance?.set_item_float(this);
+            BagCtrl.Instance?.on_item_pressed(this);
         };
     }
 

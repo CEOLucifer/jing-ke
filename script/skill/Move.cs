@@ -1,5 +1,6 @@
 namespace skill;
 
+
 public partial class Move : Skill
 {
     public override void use(Character character)

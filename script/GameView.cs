@@ -7,6 +7,11 @@ using System;
 /// </summary>
 public partial class GameView : SingletonNode<GameView>
 {
+	// UI、鼠标射线检测
+
+	[Export]
+	public CtrlPanel ctrl_panel;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {

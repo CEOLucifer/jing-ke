@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://btp2x2tbtnsrk"]
+[gd_resource type="Resource" format=3 uid="uid://btp2x2tbtnsrk"]
 
-[ext_resource type="Script" uid="uid://dvhtg3s0odqq2" path="res://script/skill/Skill.cs" id="1_e52t5"]
+[ext_resource type="Script" uid="uid://ba4moi63out2l" path="res://script/skill/Move.cs" id="1_df5tf"]
 [ext_resource type="Texture2D" uid="uid://c5kncdh2fvqu3" path="res://art/img/zhujiemian_03.png" id="2_df5tf"]
 
 [resource]
-script = ExtResource("1_e52t5")
+script = ExtResource("1_df5tf")
 name = "移动"
 description = "命令该角色移动到指定位置"
 texture = ExtResource("2_df5tf")
