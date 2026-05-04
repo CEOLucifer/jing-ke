@@ -9,7 +9,7 @@
 
 [node name="Y Bot" parent="." unique_id=1052398376 instance=ExtResource("1_uct6v")]
 
-[node name="Skeleton3D" parent="Y Bot" index="0" unique_id=1440996680]
+[node name="Skeleton3D" parent="Y Bot" index="0" unique_id=818120060]
 bones/0/position = Vector3(0.0026168248, 0.98995954, -0.0012634253)
 bones/0/rotation = Quaternion(-0.03130765, -0.04653642, -0.029024545, 0.9980039)
 bones/1/rotation = Quaternion(-0.031631216, 0.011397347, 0.022761343, 0.9991755)
