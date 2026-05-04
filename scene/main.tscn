@@ -83,9 +83,9 @@ lod0_range = 128.0
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_838f7"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_5als8")])
 
-[sub_resource type="BoxMesh" id="BoxMesh_jcbur"]
+[sub_resource type="BoxMesh" id="BoxMesh_v2gmf"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_smf0o"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_jcbur"]
 
 [node name="Main" type="Node3D" unique_id=1738170462]
 
@@ -124,6 +124,7 @@ ctrl_panel = NodePath("../../CanvasLayer/CtrlPanel")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2084280077]
 
 [node name="CtrlPanel" parent="CanvasLayer" unique_id=1030255760 instance=ExtResource("7_wscrc")]
+mouse_filter = 2
 
 [node name="player" parent="." unique_id=116128371 instance=ExtResource("9_0vlqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3020205, 0, -4.2761374)
@@ -206,40 +207,40 @@ metadata/_edit_lock_ = true
 script = ExtResource("11_fdqew")
 metadata/_custom_type_script = "uid://b46e3mat8dx5"
 
-[node name="npc" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=1898489228]
+[node name="npc" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=894377130]
 metadata/_owd_uid = "npc"
 
-[node name="human2" type="CharacterBody3D" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=1936094433 instance=ExtResource("9_0vlqb")]
+[node name="human2" type="CharacterBody3D" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=1058931664 instance=ExtResource("9_0vlqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1985197, 0, -0.6721811)
 metadata/_owd_uid = "human2"
 metadata/_owd_last_scale = Vector3(1, 1, 1)
 metadata/_owd_last_size = 1.9468498
 
-[node name="human3" type="CharacterBody3D" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=164184598 instance=ExtResource("9_0vlqb")]
+[node name="human3" type="CharacterBody3D" parent="NavigationRegion3D/OpenWorldDatabase/npc" unique_id=136541089 instance=ExtResource("9_0vlqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7112422, 1.0711832, 10.211849)
 metadata/_owd_uid = "human3"
 metadata/_owd_last_scale = Vector3(1, 1, 1)
 metadata/_owd_last_size = 1.9468498
 
-[node name="buildings" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=420672644]
+[node name="buildings" type="Node" parent="NavigationRegion3D/OpenWorldDatabase" unique_id=778693340]
 metadata/_owd_uid = "buildings"
 
-[node name="platform" type="Node3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings" unique_id=1686499833]
+[node name="platform" type="Node3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings" unique_id=802610646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5124631, 0, -0.23964596)
 metadata/_owd_uid = "platform"
 metadata/_owd_last_scale = Vector3(1, 1, 1)
 metadata/_owd_last_size = 13.079946
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=1916762538]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=669899604]
 transform = Transform3D(12.579946, 0, 0, 0, 1.4636943, 0, 0, 0, 8.185469, 6.5386133, 0, 8.844654)
-mesh = SubResource("BoxMesh_jcbur")
+mesh = SubResource("BoxMesh_v2gmf")
 metadata/_owd_uid = "MeshInstance3D"
 metadata/_owd_last_scale = Vector3(12.579946, 1.4636943, 8.185469)
 metadata/_owd_last_size = 12.579946
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=422979198]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/OpenWorldDatabase/buildings/platform" unique_id=147583917]
 transform = Transform3D(5.546094, 0, 0, 0, 0.39546758, 0.9506162, 0, -0.20274568, 1.8542339, 7.057754, -0.21704096, 2.8912678)
-mesh = SubResource("PlaneMesh_smf0o")
+mesh = SubResource("PlaneMesh_jcbur")
 metadata/_owd_uid = "MeshInstance3D2"
 metadata/_owd_last_scale = Vector3(5.546094, 0.44441018, 2.0837116)
 metadata/_owd_last_size = 11.092188

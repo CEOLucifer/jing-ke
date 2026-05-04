@@ -150,7 +150,7 @@ public partial class BagCtrl : SingletonNode<BagCtrl>
         // 测试
         if (Input.IsActionJustPressed("n"))
         {
-            var item = ResourceLoader.Load("res://item/test.tres", cacheMode: ResourceLoader.CacheMode.Ignore) as Item;
+            var item = ResourceLoader.Load("res://item/test.tres").Duplicate() as Item;
             GameCtrl.Instance.model.character.bag.add(item);
         }
 
