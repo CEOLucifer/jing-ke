@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://so5v5ret2ldj"]
+
+[ext_resource type="Script" uid="uid://44h8onibji3k" path="res://script/ui/BagPanel.cs" id="1_u8cps"]
+[ext_resource type="PackedScene" uid="uid://dtlpgttp7g0yw" path="res://prefab/ui/bag_panel/slot.tscn" id="2_cw1m7"]
+[ext_resource type="PackedScene" uid="uid://di1vki3n4w2dl" path="res://prefab/ui/bag_panel/item.tscn" id="3_nwxuy"]
+
+[node name="BagPanel" type="Control" unique_id=1884511086 node_paths=PackedStringArray("grid_container", "panel")]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -384.0
+offset_top = 30.0
+offset_right = -28.0
+offset_bottom = 196.0
+grow_horizontal = 0
+script = ExtResource("1_u8cps")
+scene_slot = ExtResource("2_cw1m7")
+grid_container = NodePath("GridContainer")
+panel = NodePath("Control")
+scene_item = ExtResource("3_nwxuy")
+
+[node name="Panel" type="Panel" parent="." unique_id=1365439477]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=738971811]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 10
+
+[node name="Control" type="Control" parent="." unique_id=1704872751]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

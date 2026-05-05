@@ -29,6 +29,16 @@ public partial class CommandQueue : Node
 
     }
 
+    public void Clear()
+    {
+        queue.Clear();
+        if (cur != null)
+        {
+            cur.Done();
+            cur = null;
+        }
+    }
+
     public override void _Process(double delta)
     {
         base._Process(delta);
@@ -38,6 +48,22 @@ public partial class CommandQueue : Node
             {
                 cur = null;
                 Do();
+            }
+            else
+            {
+                cur.Process();
+            }
+        }
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        if (cur != null)
+        {
+            if (!cur.IsDone)
+            {
+                cur.Process_physics();
             }
         }
     }

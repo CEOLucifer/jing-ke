@@ -14,5 +14,11 @@ public class Command : ICommand
 
     public virtual void Do(Context context) { }
 
-    public void Done() { isDone = true; }
+    public void Done() { isDone = true; Done_complete(); }
+
+    public virtual void Done_complete() { }
+
+    public virtual void Process() { }
+
+    public virtual void Process_physics() { }
 }

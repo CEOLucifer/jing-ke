@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace ui;
+
 public partial class ChatPanel : Control
 {
     [Export] public TextEdit textEdit;

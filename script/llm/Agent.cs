@@ -17,14 +17,16 @@ public partial class Agent : Node
 
     public void Init()
     {
-        client = new(
-            model: "qwen-plus",
-            credential: new ApiKeyCredential(System.Environment.GetEnvironmentVariable("BAILIAN_API_KEY")),
+        client = new ChatClient(
+            model: "opencode/big-pickle", // Zen 模型 ID（根据系统提示的精确 ID）
+            credential: new ApiKeyCredential(
+                System.Environment.GetEnvironmentVariable("ZEN_API_KEY") // 替换为你的 Zen API Key 环境变量名
+            ),
             options: new OpenAIClientOptions()
             {
-                Endpoint = new Uri("https://dashscope.aliyuncs.com/compatible-mode/v1")
-            });
-
+                Endpoint = new Uri("https://opencode.ai/zen/v1/chat/completions") // 替换为 Zen 的 OpenAI 兼容端点
+            }
+        );
     }
 
     public void Send(string str, Action<string> callback = null)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://ckivevc264obl"]
+
+[ext_resource type="Script" uid="uid://cnqfmkkn1qdqk" path="res://script/bag/Item.cs" id="1_pgwql"]
+[ext_resource type="Texture2D" uid="uid://c5kncdh2fvqu3" path="res://art/img/zhujiemian_03.png" id="2_p7cb2"]
+
+[resource]
+script = ExtResource("1_pgwql")
+name = "测试物品"
+description = "测试物品的描述"
+volumn = Vector2i(3, 2)
+texture = ExtResource("2_p7cb2")
+metadata/_custom_type_script = "uid://cnqfmkkn1qdqk"

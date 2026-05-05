@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://bufomy2cb21eb"]
+
+[ext_resource type="Script" uid="uid://cy75x0qos23vj" path="res://script/ui/CtrlPanel.cs" id="1_h0kag"]
+[ext_resource type="PackedScene" uid="uid://c6youmgppe4oh" path="res://prefab/ui/ctrl_panel/skill.tscn" id="2_8rmvf"]
+[ext_resource type="Texture2D" uid="uid://bksxgf51gewye" path="res://art/img/nomal_back_two.png" id="3_bovnn"]
+
+[node name="CtrlPanel" type="Control" unique_id=1030255760 node_paths=PackedStringArray("grid_container_skill")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h0kag")
+grid_container_skill = NodePath("panel_skill/GridContainer_skill")
+scene_ui_skill = ExtResource("2_8rmvf")
+
+[node name="panel_skill" type="Panel" parent="." unique_id=826041513]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -317.0
+offset_top = -95.0
+offset_right = 323.5
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GridContainer_skill" type="GridContainer" parent="panel_skill" unique_id=1088053316]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="HBoxContainer_points" type="HBoxContainer" parent="panel_skill" unique_id=728250740]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.006
+anchor_right = 0.5
+anchor_bottom = -0.006
+offset_left = -172.75
+offset_top = -50.016
+offset_right = 172.25
+offset_bottom = -0.015999973
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="panel_skill/HBoxContainer_points" unique_id=951860118]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_bovnn")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="panel_skill/HBoxContainer_points" unique_id=1977851702]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_bovnn")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="panel_skill/HBoxContainer_points" unique_id=1853710864]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_bovnn")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="panel_skill/HBoxContainer_points" unique_id=1241481179]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_bovnn")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="panel_skill/HBoxContainer_points" unique_id=1265961494]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_bovnn")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="panel_skill/HBoxContainer_points" unique_id=602308885]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_bovnn")
+expand_mode = 1
+
+[node name="hp" type="Panel" parent="panel_skill" unique_id=1743843461]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.006
+anchor_bottom = 1.006
+offset_left = -157.0
+offset_top = -165.98401
+offset_bottom = -1.9840088
+
+[node name="turn" type="Panel" parent="panel_skill" unique_id=685737136]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.994
+anchor_right = 1.0
+anchor_bottom = 0.994
+offset_left = 0.5
+offset_top = -163.016
+offset_right = 157.5
+offset_bottom = 0.98399353
+
+[node name="map" type="Panel" parent="." unique_id=2107555081]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -198.0
+offset_bottom = 192.0
+grow_horizontal = 0
+
+[node name="team" type="Panel" parent="." unique_id=686524959]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -173.5
+offset_right = 72.0
+offset_bottom = 173.5
+grow_vertical = 2
