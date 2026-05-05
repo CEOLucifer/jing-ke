@@ -1,6 +1,9 @@
 extends PanelContainer
 
 
+signal quest_accepted
+
+
 @onready var npc_name_label: Label = $DialogueMargin/DialogueVBox/NpcNameLabel
 @onready var dialogue_text_label: Label = $DialogueMargin/DialogueVBox/DialogueTextLabel
 @onready var option_container: VBoxContainer = $DialogueMargin/DialogueVBox/OptionContainer
@@ -12,7 +15,7 @@ extends PanelContainer
 
 var initial_dialogue := "荆卿，秦军压境，燕国已无退路。你可愿为天下一试？"
 var option_results := [
-	"太子丹凝视着你，缓缓点头：“燕国的命数，便托付于你了。”",
+	"太子丹凝视着你，缓缓点头：“燕国的命数，便托付于你了。出发前，先取徐夫人匕首与督亢地图。”",
 	"太子丹叹息道：“我知此行凶险，可秦国不会再给我们太多时间。”",
 	"太子丹沉默片刻：“若你失败，燕国仍会抗争，只是天下再难有转机。”"
 ]
@@ -54,3 +57,6 @@ func _on_option_pressed(option_index: int) -> void:
 
 	dialogue_text_label.text = option_results[option_index]
 	option_container.visible = false
+
+	if option_index == 0:
+		quest_accepted.emit()
