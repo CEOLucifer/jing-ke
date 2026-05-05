@@ -1,14 +1,19 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_mainmenu"]
 [ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/bg_battlefield.png" id="2_bg"]
 [ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/warring_states_pattern.png" id="3_pattern"]
 [ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/bronze_bird_plaque.png" id="4_plaque"]
 [ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/border_reference.jpg" id="5_border"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/Menu_Form/button1_transparent.png" id="6_button_normal"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/Menu_Form/button2_transparent.png" id="7_button_hover"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/Menu_Form/button3_transparent.png" id="8_button_pressed"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/Menu_Form/frame1_transparent.png" id="9_frame1"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/Menu_Form/game_title_transparent.png" id="10_game_title"]
 
 [sub_resource type="StyleBoxFlat" id="StylePanelBronze"]
-bg_color = Color(0.045, 0.038, 0.03, 0.78)
-border_color = Color(0.74, 0.53, 0.2, 0.9)
+bg_color = Color(0.025, 0.02, 0.016, 0.24)
+border_color = Color(0.56, 0.44, 0.2, 0.24)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -21,8 +26,8 @@ shadow_color = Color(0, 0, 0, 0.45)
 shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StylePanelGreen"]
-bg_color = Color(0.022, 0.035, 0.033, 0.76)
-border_color = Color(0.48, 0.73, 0.61, 0.78)
+bg_color = Color(0.03, 0.025, 0.018, 0.55)
+border_color = Color(0.54, 0.42, 0.2, 0.34)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -34,13 +39,27 @@ corner_radius_bottom_left = 5
 shadow_color = Color(0, 0, 0, 0.42)
 shadow_size = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleButtonInset"]
+bg_color = Color(0.02, 0.018, 0.015, 0.18)
+border_color = Color(0.22, 0.32, 0.26, 0.18)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleButtonNormal"]
-bg_color = Color(0.12, 0.078, 0.04, 0.9)
-border_color = Color(0.47, 0.35, 0.14, 0.95)
-border_width_left = 2
+bg_color = Color(0.085, 0.055, 0.032, 0.94)
+border_color = Color(0.5, 0.39, 0.18, 0.96)
+border_width_left = 3
 border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_right = 3
+border_width_bottom = 3
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -51,12 +70,12 @@ content_margin_right = 18.0
 content_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleButtonHover"]
-bg_color = Color(0.18, 0.115, 0.055, 0.96)
+bg_color = Color(0.13, 0.085, 0.045, 0.98)
 border_color = Color(0.86, 0.66, 0.28, 1)
-border_width_left = 2
+border_width_left = 3
 border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_right = 3
+border_width_bottom = 3
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -67,12 +86,12 @@ content_margin_right = 18.0
 content_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleButtonPressed"]
-bg_color = Color(0.08, 0.055, 0.035, 0.98)
-border_color = Color(0.68, 0.48, 0.18, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+bg_color = Color(0.045, 0.034, 0.026, 1)
+border_color = Color(0.42, 0.3, 0.13, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 1
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -83,6 +102,18 @@ content_margin_right = 18.0
 content_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleEmpty"]
+
+[sub_resource type="StyleBoxFlat" id="StyleSmallButton"]
+bg_color = Color(0.075, 0.055, 0.035, 0.9)
+border_color = Color(0.64, 0.48, 0.22, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -125,6 +156,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="PatternWash" type="TextureRect" parent="CanvasLayer/RootControl/Background"]
+visible = false
 modulate = Color(0.35, 0.8, 0.7, 0.12)
 layout_mode = 1
 anchors_preset = 15
@@ -145,7 +177,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.02, 0.015, 0.012, 0.58)
+color = Color(0.02, 0.015, 0.012, 0.24)
 
 [node name="BronzeOverlay" type="ColorRect" parent="CanvasLayer/RootControl/Background"]
 layout_mode = 1
@@ -155,10 +187,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.26, 0.13, 0.04, 0.2)
+color = Color(0.26, 0.13, 0.04, 0.08)
 
 [node name="TopOrnament" type="TextureRect" parent="CanvasLayer/RootControl"]
-modulate = Color(0.95, 0.72, 0.3, 0.25)
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -173,7 +205,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="BottomOrnament" type="TextureRect" parent="CanvasLayer/RootControl"]
-modulate = Color(0.95, 0.72, 0.3, 0.18)
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -192,27 +224,39 @@ stretch_mode = 6
 
 [node name="TitleArea" type="VBoxContainer" parent="CanvasLayer/RootControl"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 70.0
-offset_top = 64.0
-offset_right = -70.0
-offset_bottom = 170.0
-grow_horizontal = 2
+offset_left = -615.0
+offset_top = 138.0
+offset_right = -30.0
+offset_bottom = 336.0
+grow_horizontal = 0
 theme_override_constants/separation = 8
 alignment = 1
 
+[node name="TitleTexture" type="TextureRect" parent="CanvasLayer/RootControl/TitleArea"]
+custom_minimum_size = Vector2(620, 186)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("10_game_title")
+expand_mode = 1
+stretch_mode = 5
 [node name="TitleLabel" type="Label" parent="CanvasLayer/RootControl/TitleArea"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.78, 0.34, 1)
+theme_override_colors/font_outline_color = Color(0.18, 0.09, 0.025, 0.95)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.78)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 44
 text = "《荆轲：天命改写》"
 horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="CanvasLayer/RootControl/TitleArea"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.82, 0.66, 1)
 theme_override_font_sizes/font_size = 22
@@ -220,159 +264,622 @@ text = "历史宿命，由你改写"
 horizontal_alignment = 1
 
 [node name="TitleOrnament" type="TextureRect" parent="CanvasLayer/RootControl/TitleArea"]
-modulate = Color(0.95, 0.72, 0.28, 0.42)
-custom_minimum_size = Vector2(360, 18)
+visible = false
+custom_minimum_size = Vector2(260, 12)
 layout_mode = 2
 texture = ExtResource("3_pattern")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="LeftMenuPanel" type="PanelContainer" parent="CanvasLayer/RootControl"]
-custom_minimum_size = Vector2(420, 500)
+[node name="LeftMenuReliefFrame" type="TextureRect" parent="CanvasLayer/RootControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 76.0
-offset_top = -210.0
-offset_right = 496.0
-offset_bottom = 290.0
+offset_left = 60.0
+offset_top = -226.0
+offset_right = 512.0
+offset_bottom = 306.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StylePanelBronze")
+mouse_filter = 2
+texture = ExtResource("5_border")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftMenuPanel" type="PanelContainer" parent="CanvasLayer/RootControl"]
+custom_minimum_size = Vector2(390, 600)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 74.0
+offset_top = -260.0
+offset_right = 464.0
+offset_bottom = 340.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleEmpty")
 
 [node name="MenuMargin" type="MarginContainer" parent="CanvasLayer/RootControl/LeftMenuPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_top = 34
-theme_override_constants/margin_right = 34
-theme_override_constants/margin_bottom = 34
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 18
 
-[node name="ButtonVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin"]
+[node name="ButtonInsetPanel" type="PanelContainer" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin"]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_styles/panel = SubResource("StyleEmpty")
+
+[node name="ButtonInsetMargin" type="MarginContainer" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
+
+[node name="ButtonVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="BronzeButtonDecor" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
-modulate = Color(0.55, 0.95, 0.85, 0.24)
-custom_minimum_size = Vector2(170, 74)
+[node name="BronzeButtonDecor" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox"]
+modulate = Color(0.55, 0.95, 0.85, 0.18)
+custom_minimum_size = Vector2(110, 28)
 layout_mode = 2
 texture = ExtResource("4_plaque")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="StartButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
-custom_minimum_size = Vector2(300, 48)
+[node name="StartButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox"]
+custom_minimum_size = Vector2(330, 72)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
-theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
-theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleButtonNormal")
-theme_override_styles/hover = SubResource("StyleButtonHover")
-theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/normal = SubResource("StyleEmpty")
+theme_override_styles/hover = SubResource("StyleEmpty")
+theme_override_styles/pressed = SubResource("StyleEmpty")
 theme_override_styles/focus = SubResource("StyleEmpty")
-text = "开始新游戏"
+text = ""
 
-[node name="StoryDemoButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
-custom_minimum_size = Vector2(300, 48)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
-theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
-theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleButtonNormal")
-theme_override_styles/hover = SubResource("StyleButtonHover")
-theme_override_styles/pressed = SubResource("StyleButtonPressed")
-theme_override_styles/focus = SubResource("StyleEmpty")
-text = "剧情 Demo"
+[node name="PlateTexture" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_button_normal")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="ContinueButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
-custom_minimum_size = Vector2(300, 48)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
-theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
-theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleButtonNormal")
-theme_override_styles/hover = SubResource("StyleButtonHover")
-theme_override_styles/pressed = SubResource("StyleButtonPressed")
-theme_override_styles/focus = SubResource("StyleEmpty")
-text = "继续游戏"
+[node name="LeftRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StartButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.28)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -15.0
+offset_right = 44.0
+offset_bottom = 15.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="LoadButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
-custom_minimum_size = Vector2(300, 48)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
-theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
-theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleButtonNormal")
-theme_override_styles/hover = SubResource("StyleButtonHover")
-theme_override_styles/pressed = SubResource("StyleButtonPressed")
-theme_override_styles/focus = SubResource("StyleEmpty")
-text = "读取存档"
-
-[node name="SettingsButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
-custom_minimum_size = Vector2(300, 48)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
-theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
-theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleButtonNormal")
-theme_override_styles/hover = SubResource("StyleButtonHover")
-theme_override_styles/pressed = SubResource("StyleButtonPressed")
-theme_override_styles/focus = SubResource("StyleEmpty")
-text = "设置"
-
-[node name="ExitButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
-custom_minimum_size = Vector2(300, 48)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
-theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
-theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleButtonNormal")
-theme_override_styles/hover = SubResource("StyleButtonHover")
-theme_override_styles/pressed = SubResource("StyleButtonPressed")
-theme_override_styles/focus = SubResource("StyleEmpty")
-text = "退出游戏"
-
-[node name="RightLorePanel" type="PanelContainer" parent="CanvasLayer/RootControl"]
-custom_minimum_size = Vector2(470, 500)
+[node name="RightRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StartButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.28)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -546.0
-offset_top = -210.0
-offset_right = -76.0
-offset_bottom = 290.0
+offset_left = -44.0
+offset_top = -15.0
+offset_right = -8.0
+offset_bottom = 15.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StylePanelGreen")
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="LoreMargin" type="MarginContainer" parent="CanvasLayer/RootControl/RightLorePanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 28
+[node name="ButtonText" type="Label" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_right = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "开始新游戏"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="LoreVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin"]
+[node name="StoryDemoButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox"]
+custom_minimum_size = Vector2(330, 72)
 layout_mode = 2
-theme_override_constants/separation = 14
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleEmpty")
+theme_override_styles/hover = SubResource("StyleEmpty")
+theme_override_styles/pressed = SubResource("StyleEmpty")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = ""
+
+[node name="PlateTexture" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StoryDemoButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_button_normal")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StoryDemoButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.25)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -15.0
+offset_right = 44.0
+offset_bottom = 15.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StoryDemoButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.25)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -15.0
+offset_right = -8.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonText" type="Label" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/StoryDemoButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_right = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "剧情 Demo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox"]
+custom_minimum_size = Vector2(330, 72)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleEmpty")
+theme_override_styles/hover = SubResource("StyleEmpty")
+theme_override_styles/pressed = SubResource("StyleEmpty")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = ""
+
+[node name="PlateTexture" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ContinueButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_button_normal")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ContinueButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -15.0
+offset_right = 44.0
+offset_bottom = 15.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ContinueButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -15.0
+offset_right = -8.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonText" type="Label" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ContinueButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_right = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "继续游戏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox"]
+custom_minimum_size = Vector2(330, 72)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleEmpty")
+theme_override_styles/hover = SubResource("StyleEmpty")
+theme_override_styles/pressed = SubResource("StyleEmpty")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = ""
+
+[node name="PlateTexture" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/LoadButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_button_normal")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/LoadButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -15.0
+offset_right = 44.0
+offset_bottom = 15.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/LoadButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -15.0
+offset_right = -8.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonText" type="Label" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/LoadButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_right = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "读取存档"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox"]
+custom_minimum_size = Vector2(330, 72)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleEmpty")
+theme_override_styles/hover = SubResource("StyleEmpty")
+theme_override_styles/pressed = SubResource("StyleEmpty")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = ""
+
+[node name="PlateTexture" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_button_normal")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/SettingsButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -15.0
+offset_right = 44.0
+offset_bottom = 15.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/SettingsButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -15.0
+offset_right = -8.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonText" type="Label" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_right = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "设置"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox"]
+custom_minimum_size = Vector2(330, 72)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleEmpty")
+theme_override_styles/hover = SubResource("StyleEmpty")
+theme_override_styles/pressed = SubResource("StyleEmpty")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = ""
+
+[node name="PlateTexture" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_button_normal")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ExitButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -15.0
+offset_right = 44.0
+offset_bottom = 15.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightRelief" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ExitButton"]
+modulate = Color(0.57, 0.88, 0.75, 0.22)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -15.0
+offset_right = -8.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonText" type="Label" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonInsetPanel/ButtonInsetMargin/ButtonVBox/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_right = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "退出游戏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoreDialogCard" type="Control" parent="CanvasLayer/RootControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -300.0
+offset_right = 440.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RightMainPanelReliefFrame" type="TextureRect" parent="CanvasLayer/RootControl/LoreDialogCard"]
+modulate = Color(1, 1, 1, 0.9)
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_frame1")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RightLorePanel" type="Control" parent="CanvasLayer/RootControl/LoreDialogCard"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 42.0
+offset_right = -30.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseLoreButton" type="Button" parent="CanvasLayer/RootControl/LoreDialogCard"]
+custom_minimum_size = Vector2(28, 28)
+z_index = 4
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 70.0
+offset_right = -66.0
+offset_bottom = 100.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.9, 0.74, 0.44, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.62, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleSmallButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "X"
+
+[node name="LoreGlassFill" type="ColorRect" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.018, 0.016, 0.012, 0.78)
+
+[node name="LoreMargin" type="MarginContainer" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_top = 94
+theme_override_constants/margin_right = 96
+theme_override_constants/margin_bottom = 72
+
+[node name="LoreVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel/LoreMargin"]
+layout_mode = 2
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="LoreFrame" type="TextureRect" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+[node name="LoreFrame" type="TextureRect" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel/LoreMargin/LoreVBox"]
+visible = false
 modulate = Color(0.42, 0.92, 0.82, 0.34)
 custom_minimum_size = Vector2(170, 110)
 layout_mode = 2
@@ -380,14 +887,14 @@ texture = ExtResource("4_plaque")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LoreTitleLabel" type="Label" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+[node name="LoreTitleLabel" type="Label" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel/LoreMargin/LoreVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.75, 0.32, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 text = "【天命残卷】"
 horizontal_alignment = 1
 
-[node name="Divider" type="TextureRect" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+[node name="Divider" type="TextureRect" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel/LoreMargin/LoreVBox"]
 modulate = Color(0.95, 0.72, 0.28, 0.42)
 custom_minimum_size = Vector2(350, 18)
 layout_mode = 2
@@ -395,7 +902,7 @@ texture = ExtResource("3_pattern")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="LoreTextLabel" type="Label" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+[node name="LoreTextLabel" type="Label" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel/LoreMargin/LoreVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.86, 0.82, 0.71, 1)
 theme_override_font_sizes/font_size = 19
@@ -411,6 +918,168 @@ text = "秦并六国之势已成，燕国危在旦夕。
 亲手写下刺秦前夜的答案。"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="ShowLoreButton" type="Button" parent="CanvasLayer/RootControl"]
+custom_minimum_size = Vector2(128, 36)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -168.0
+offset_top = 76.0
+offset_right = -40.0
+offset_bottom = 112.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.9, 0.74, 0.44, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.62, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleSmallButton")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "天命残卷"
+
+[node name="StyledMessageOverlay" type="Control" parent="CanvasLayer/RootControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogDim" type="ColorRect" parent="CanvasLayer/RootControl/StyledMessageOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.08)
+
+[node name="DialogCard" type="Control" parent="CanvasLayer/RootControl/StyledMessageOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -215.0
+offset_right = 340.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogFrame" type="TextureRect" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard"]
+modulate = Color(1, 1, 1, 0.92)
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_frame1")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DialogPanel" type="Control" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 42.0
+offset_right = -30.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogGlassFill" type="ColorRect" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.018, 0.016, 0.012, 0.78)
+
+[node name="DialogMargin" type="MarginContainer" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_top = 92
+theme_override_constants/margin_right = 110
+theme_override_constants/margin_bottom = 78
+
+[node name="DialogVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel/DialogMargin"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="MessageTitle" type="Label" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel/DialogMargin/DialogVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.75, 0.32, 1)
+theme_override_font_sizes/font_size = 26
+text = "天命回声"
+horizontal_alignment = 1
+
+[node name="MessageText" type="Label" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel/DialogMargin/DialogVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.84, 0.7, 1)
+theme_override_font_sizes/font_size = 20
+text = "提示内容"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel/DialogMargin/DialogVBox"]
+custom_minimum_size = Vector2(190, 54)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleEmpty")
+theme_override_styles/hover = SubResource("StyleEmpty")
+theme_override_styles/pressed = SubResource("StyleEmpty")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = ""
+
+[node name="PlateTexture" type="TextureRect" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel/DialogMargin/DialogVBox/ConfirmButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_button_normal")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ButtonText" type="Label" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel/DialogMargin/DialogVBox/ConfirmButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "确认"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/RootControl"]
 
