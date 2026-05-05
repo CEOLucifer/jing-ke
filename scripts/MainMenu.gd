@@ -133,7 +133,7 @@ func _create_panel_style(color: Color) -> StyleBoxFlat:
 
 # 开始新游戏，进入易水河畔场景。
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://WorldScene.tscn")
+	get_tree().change_scene_to_file("res://scene/main.tscn")
 
 
 # 显示继续游戏暂未开放提示。
