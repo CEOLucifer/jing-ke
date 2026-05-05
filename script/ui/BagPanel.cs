@@ -125,7 +125,7 @@ public partial class BagPanel : Control
 
 	}
 
-	public void set_item(ui.Item ui_item, Bag.ItemAdapter item_adpater)
+	public void set_item(ui.Item ui_item, bag.ItemAdapter item_adpater)
 	{
 		// 调整大小
 		ui_item.Size = new Vector2(SlotSize.X * item_adpater.item.volumn.X, SlotSize.Y * item_adpater.item.volumn.Y);

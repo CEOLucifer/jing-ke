@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bdpqgldlx0e3u"]
+
+[ext_resource type="Script" uid="uid://dq52ff8ti2gei" path="res://script/Chest.cs" id="1_6srav"]
+[ext_resource type="Script" uid="uid://cmbx0hol1lucu" path="res://script/bag/ItemAdapter.cs" id="2_gahf5"]
+[ext_resource type="Resource" uid="uid://ckivevc264obl" path="res://item/test.tres" id="3_ijyp3"]
+[ext_resource type="Script" uid="uid://qn2s4m7t3rfr" path="res://script/bag/Bag.cs" id="4_cbhol"]
+
+[sub_resource type="Resource" id="Resource_qhp7v"]
+resource_local_to_scene = true
+script = ExtResource("2_gahf5")
+item = ExtResource("3_ijyp3")
+metadata/_custom_type_script = "uid://cmbx0hol1lucu"
+
+[sub_resource type="Resource" id="Resource_3fmmy"]
+script = ExtResource("2_gahf5")
+item = ExtResource("3_ijyp3")
+coord = Vector2i(3, 0)
+metadata/_custom_type_script = "uid://cmbx0hol1lucu"
+
+[sub_resource type="Resource" id="Resource_th26k"]
+resource_local_to_scene = true
+script = ExtResource("4_cbhol")
+item_adapters = Array[ExtResource("2_gahf5")]([SubResource("Resource_qhp7v"), SubResource("Resource_3fmmy")])
+metadata/_custom_type_script = "uid://qn2s4m7t3rfr"
+
+[sub_resource type="BoxMesh" id="BoxMesh_6srav"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6srav"]
+radius = 0.905
+
+[node name="Chest" type="StaticBody3D" unique_id=237404084]
+
+[node name="bag" type="Node" parent="." unique_id=1329422964]
+script = ExtResource("1_6srav")
+bag = SubResource("Resource_th26k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1879505318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_6srav")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1479937380]
+radius = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1770047674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64243627, 0)
+shape = SubResource("SphereShape3D_6srav")

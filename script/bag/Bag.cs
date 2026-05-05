@@ -1,17 +1,22 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
+using bag;
+
 /// <summary>
-/// 背包
+/// 背包，表示一切游戏内的物品容器
 /// </summary>
-public class Bag
+[GlobalClass]
+public partial class Bag : Resource
 {
 	/// <summary>
 	/// 列数-行数
 	/// </summary>
 	public Vector2I col_row = new(10, 5);
-	public List<ItemAdapter> item_adapters = new();
+	[Export]
+	public Array<ItemAdapter> item_adapters = new();
 	public List<List<Slot>> slots;
 
 	public Bag()
@@ -171,7 +176,14 @@ public class Bag
 
 	public bool Contains(Item item)
 	{
-		return item_adapters.Find((adapter) => adapter.item == item) != null;
+		foreach (var each in item_adapters)
+		{
+			if (each.item == item)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/// <summary>
@@ -193,22 +205,6 @@ public class Bag
 		}
 	}
 
-
-	/// <summary>
-	/// 物品适配器。物品在背包中存在“坐标”。
-	/// </summary>
-	public class ItemAdapter
-	{
-		/// <summary>
-		/// 物品
-		/// </summary>
-		public Item item;
-
-		/// <summary>
-		/// 物品坐标
-		/// </summary>
-		public Vector2I coord;
-	}
 
 	public struct Slot
 	{

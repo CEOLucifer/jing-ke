@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 /// <summary>
@@ -18,7 +19,7 @@ public partial class Character : Node
 	private uint hp;
 	[Export]
 	private uint max_hp;
-	private Node3D root;
+	private CharacterBody3D root;
 	[Export]
 	public NavigationAgent3D nav_agent;
 	public Bag bag = new();
@@ -50,7 +51,7 @@ public partial class Character : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		root = GetParent<Node3D>();
+		root = GetParent<CharacterBody3D>();
 
 		init_equipment_list();
 
@@ -60,13 +61,17 @@ public partial class Character : Node
 		}
 
 		init_anim_player();
+
+		connect_nav_agent();
 	}
+
 
 
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
 		process_move(delta);
+		process_draw_velocity();
 	}
 
 
@@ -74,7 +79,7 @@ public partial class Character : Node
 	#region 移动
 	private Vector3 targetPos;
 	[Export]
-	private float speed = 50;
+	private float speed = 5;
 	public Action on_move_complete;
 	private bool is_moving = false;
 
@@ -85,6 +90,9 @@ public partial class Character : Node
 		targetPos = pos;
 		nav_agent.TargetPosition = pos;
 		is_moving = true;
+
+		anim_tree.set_condition("slow_run", true);
+		anim_tree.set_condition("idle", false);
 	}
 
 	private void process_move(double delta)
@@ -93,32 +101,50 @@ public partial class Character : Node
 		{
 			if (nav_agent.IsNavigationFinished())
 			{
-				anim_player.Play("human/idle");
-				is_moving = false;
+				stop_move();
+				// anim_player.Play("human/idle");
 				on_move_complete?.Invoke();
 				return;
 			}
 
 			var next_pos = nav_agent.GetNextPathPosition();
 			var direction = (next_pos - root.Position).Normalized();
-			root.Position += direction * (float)(speed * delta);
+			// root.Position += direction * (float)(speed * delta);
+			root.Velocity = direction * speed;
 
-			// 调整朝向
+			// 调整朝向，todo:平滑地
 			root.LookAt(next_pos, Vector3.Up, true);
 			var rotation = root.Rotation;
 			rotation.X = 0;
 			root.Rotation = rotation;
 
-			anim_player.Play("human/slow_run");
+			root.MoveAndSlide();
 		}
 	}
 
 	public void stop_move()
 	{
 		is_moving = false;
-		anim_player.Play("human/idle");
+		anim_tree.set_condition("slow_run", false);
+		anim_tree.set_condition("idle", true);
 	}
 
+
+	// 导航
+	public void connect_nav_agent()
+	{
+		nav_agent.VelocityComputed += (velocity) =>
+		{
+			GD.Print($"速度：{velocity}");
+			DebugDraw.Arrow(root.Position, velocity, color: new Color(1, 0, 0));
+			root.Velocity += velocity * speed;
+		};
+	}
+
+	private void process_draw_velocity()
+    {
+        DebugDraw.Arrow(root.Position, root.Velocity);
+    }
 	#endregion
 
 
@@ -145,12 +171,23 @@ public partial class Character : Node
 	#endregion
 
 	#region 动画
+	[Export]
 	public AnimationPlayer anim_player;
+	[Export]
+	public AnimationTree anim_tree;
 
 	private void init_anim_player()
 	{
-		anim_player = model_root.get_child<AnimationPlayer>();
-		anim_player.Play("human/idle");
+		if (anim_player == null)
+		{
+			anim_player = model_root.get_child<AnimationPlayer>();
+			// anim_player.Play("human/idle");
+		}
+
+		if (anim_tree == null)
+		{
+			anim_tree = model_root.get_child<AnimationTree>();
+		}
 	}
 	#endregion
 }

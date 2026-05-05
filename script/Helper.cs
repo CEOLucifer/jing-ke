@@ -37,4 +37,9 @@ public static class Helper
         }
         return null;
     }
+
+    public static void set_condition(this AnimationTree @this, string condition, bool value)
+    {
+        @this.Set($"parameters/conditions/{condition}", value);
+    }
 }

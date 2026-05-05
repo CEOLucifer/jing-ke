@@ -19,13 +19,17 @@ run/main_scene="uid://b774cre0as2w0"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DebugDraw="*uid://ds8w3e4o8vepp"
+
 [dotnet]
 
 project/assembly_name="JingKe"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/open-world-database/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_drawing/plugin.cfg", "res://addons/open-world-database/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [input]
 

@@ -13,7 +13,7 @@ public partial class Item : Control
     public Button btn;
     [Export]
     public bool is_follow_mouse = false;
-    public global::Bag.ItemAdapter item_adapter;
+    public bag.ItemAdapter item_adapter;
 
     public override void _Ready()
     {
