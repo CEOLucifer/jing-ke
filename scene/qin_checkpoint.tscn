@@ -1,0 +1,392 @@
+[gd_scene format=3 uid="uid://cyvjgd7l0eybm"]
+
+[ext_resource type="Script" path="res://scripts/QinCheckpointController.gd" id="1_controller"]
+[ext_resource type="Script" path="res://scripts/ReturnMainMenuButton.gd" id="2_return"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground"]
+albedo_color = Color(0.075, 0.085, 0.1, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="Mat_road"]
+albedo_color = Color(0.18, 0.16, 0.13, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_gate"]
+albedo_color = Color(0.11, 0.075, 0.05, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_scout"]
+albedo_color = Color(0.22, 0.055, 0.04, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_checkpoint_wood"]
+albedo_color = Color(0.13, 0.085, 0.05, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="Mat_checkpoint_rock"]
+albedo_color = Color(0.18, 0.2, 0.22, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Mat_checkpoint_fire"]
+albedo_color = Color(1, 0.32, 0.06, 1)
+emission_enabled = true
+emission = Color(1, 0.25, 0.04, 1)
+emission_energy_multiplier = 2.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_checkpoint_flag"]
+albedo_color = Color(0.28, 0.025, 0.018, 1)
+roughness = 0.72
+
+[sub_resource type="Environment" id="Environment_qin_night"]
+background_mode = 1
+background_color = Color(0.035, 0.045, 0.07, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.2, 0.25, 0.34, 1)
+ambient_light_energy = 0.42
+fog_enabled = true
+fog_light_color = Color(0.12, 0.16, 0.22, 1)
+fog_density = 0.018
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(24, 0.2, 18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_road"]
+size = Vector3(6, 0.08, 18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_unit"]
+
+[node name="QinCheckpoint" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ground")
+surface_material_override/0 = SubResource("Mat_ground")
+
+[node name="Road" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+mesh = SubResource("BoxMesh_road")
+surface_material_override/0 = SubResource("Mat_road")
+
+[node name="GateLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 3.2, 0, 0, 0, 1.0, -4.4, 1.6, -4.8)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_gate")
+
+[node name="GateRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 3.2, 0, 0, 0, 1.0, 4.4, 1.6, -4.8)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_gate")
+
+[node name="Barricade" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.2, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.45, -2.6)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_gate")
+
+[node name="QinScout" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 1.8, 0, 0, 0, 0.7, 0, 1.0, -1.1)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_scout")
+
+[node name="CheckpointSet" type="Node3D" parent="."]
+
+[node name="PalisadeLeft" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.28, 0, 0, 0, 2.1, 0, 0, 0, 7.0, -7.2, 1.05, -1.0)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_wood")
+
+[node name="PalisadeRight" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.28, 0, 0, 0, 2.1, 0, 0, 0, 7.0, 7.2, 1.05, -1.0)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_wood")
+
+[node name="WatchTowerBase" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(2.4, 0, 0, 0, 3.6, 0, 0, 0, 2.4, -6.0, 1.8, -5.7)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_wood")
+
+[node name="WatchTowerTop" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(3.2, 0, 0, 0, 0.35, 0, 0, 0, 3.2, -6.0, 3.8, -5.7)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_gate")
+
+[node name="CheckpointCrossbeam" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(8.6, 0, 0, 0, 0.42, 0, 0, 0, 0.55, 0, 3.85, -4.8)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_wood")
+
+[node name="TorchLeftPost" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.18, 0, 0, 0, 1.8, 0, 0, 0, 0.18, -3.0, 0.9, -2.8)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_wood")
+
+[node name="TorchLeftFlame" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, -3.0, 2.05, -2.8)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_fire")
+
+[node name="TorchRightPost" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.18, 0, 0, 0, 1.8, 0, 0, 0, 0.18, 3.0, 0.9, -2.8)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_wood")
+
+[node name="TorchRightFlame" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, 3.0, 2.05, -2.8)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_fire")
+
+[node name="Campfire" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(1.2, 0, 0, 0, 0.24, 0, 0, 0, 1.2, 5.3, 0.3, 3.0)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_fire")
+
+[node name="RockA" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(1.9, 0, 0, 0, 0.75, 0, 0, 0, 1.2, -8.5, 0.45, 3.3)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_rock")
+
+[node name="RockB" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(1.2, 0, 0, 0, 0.6, 0, 0, 0, 1.6, 8.4, 0.35, 4.5)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_rock")
+
+[node name="QinFlagPole" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.16, 0, 0, 0, 3.5, 0, 0, 0, 0.16, 5.8, 1.75, -5.2)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_wood")
+
+[node name="QinFlagCloth" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(1.6, 0, 0, 0, 0.8, 0, 0, 0, 0.08, 6.65, 2.85, -5.2)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_checkpoint_flag")
+
+[node name="PatrolMarkerA" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.55, 0, 0, 0, 0.12, 0, 0, 0, 0.55, -2.1, 0.18, 1.9)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_scout")
+
+[node name="PatrolMarkerB" type="MeshInstance3D" parent="CheckpointSet"]
+transform = Transform3D(0.55, 0, 0, 0, 0.12, 0, 0, 0, 0.55, 2.4, 0.18, 2.4)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_scout")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 8, 0)
+light_color = Color(0.55, 0.66, 0.9, 1)
+light_energy = 0.75
+
+[node name="TorchLightLeft" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 2.2, -2.8)
+light_color = Color(1, 0.47, 0.22, 1)
+light_energy = 1.15
+omni_range = 5.5
+
+[node name="TorchLightRight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0, 2.2, -2.8)
+light_color = Color(1, 0.47, 0.22, 1)
+light_energy = 1.15
+omni_range = 5.5
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.669131, 0.743145, 0, -0.743145, 0.669131, 0, 6.4, 8.8)
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qin_night")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StatusPanel" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 250.0
+offset_bottom = 128.0
+mouse_filter = 2
+
+[node name="StatusMargin" type="MarginContainer" parent="CanvasLayer/StatusPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="StatusVBox" type="VBoxContainer" parent="CanvasLayer/StatusPanel/StatusMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="FateLabel" type="Label" parent="CanvasLayer/StatusPanel/StatusMargin/StatusVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "天命值：60"
+
+[node name="DisturbanceLabel" type="Label" parent="CanvasLayer/StatusPanel/StatusMargin/StatusVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "历史扰动值：15"
+
+[node name="HpLabel" type="Label" parent="CanvasLayer/StatusPanel/StatusMargin/StatusVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "生命值：100"
+
+[node name="HintLabel" type="Label" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 140.0
+offset_right = 520.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 16
+text = "选择一种方式处理秦军斥候。不同选择会触发不同难度的 D20 检定。"
+autowrap_mode = 3
+
+[node name="EncounterPanel" type="PanelContainer" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -230.0
+offset_right = 360.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EncounterMargin" type="MarginContainer" parent="CanvasLayer/EncounterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="EncounterVBox" type="VBoxContainer" parent="CanvasLayer/EncounterPanel/EncounterMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="EncounterTitleLabel" type="Label" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "秦军斥候遭遇"
+
+[node name="EncounterTextLabel" type="Label" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "夜色渐深，你携匕首与地图踏入秦境边道。远处火光摇曳，一名秦军斥候正沿路巡查，若被发现，刺秦之路将提前暴露。"
+autowrap_mode = 3
+
+[node name="ChoiceContainer" type="VBoxContainer" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StealthChoiceButton" type="Button" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox/ChoiceContainer"]
+layout_mode = 2
+text = "潜行绕过"
+
+[node name="DaggerChoiceButton" type="Button" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox/ChoiceContainer"]
+layout_mode = 2
+text = "使用徐夫人匕首突袭"
+
+[node name="TalkChoiceButton" type="Button" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox/ChoiceContainer"]
+layout_mode = 2
+text = "正面交涉"
+
+[node name="DiceResultLabel" type="Label" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = ""
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/EncounterPanel/EncounterMargin/EncounterVBox"]
+visible = false
+layout_mode = 2
+text = "继续潜入秦国"
+
+[node name="FloatingFeedbackLabel" type="Label" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -42.0
+offset_right = 180.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "状态变化"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StageResultPanel" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -170.0
+offset_right = 330.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StageResultMargin" type="MarginContainer" parent="CanvasLayer/StageResultPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="StageResultVBox" type="VBoxContainer" parent="CanvasLayer/StageResultPanel/StageResultMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StageResultTitleLabel" type="Label" parent="CanvasLayer/StageResultPanel/StageResultMargin/StageResultVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "第二阶段完成：秦境潜入"
+
+[node name="StageResultTextLabel" type="Label" parent="CanvasLayer/StageResultPanel/StageResultMargin/StageResultVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "你越过秦境关隘，刺秦之路正式进入险境。前方是咸阳，是秦王，也是几乎不可逆转的历史。"
+autowrap_mode = 3
+
+[node name="StageResultButtonRow" type="HBoxContainer" parent="CanvasLayer/StageResultPanel/StageResultMargin/StageResultVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CloseStageResultButton" type="Button" parent="CanvasLayer/StageResultPanel/StageResultMargin/StageResultVBox/StageResultButtonRow"]
+layout_mode = 2
+text = "关闭"
+
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer/StageResultPanel/StageResultMargin/StageResultVBox/StageResultButtonRow"]
+layout_mode = 2
+text = "返回主菜单"
+
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -148.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 52.0
+grow_horizontal = 0
+text = "返回主菜单"
+script = ExtResource("2_return")
+
+[node name="SceneFadeOverlay" type="ColorRect" parent="CanvasLayer"]
+visible = false
+mouse_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="QinCheckpointController" type="Node" parent="CanvasLayer"]
+script = ExtResource("1_controller")

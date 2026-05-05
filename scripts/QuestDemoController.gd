@@ -17,6 +17,7 @@ signal map_received
 @onready var result_stats_label: Label = $"../DemoResultPanel/ResultMargin/ResultVBox/ResultStatsLabel"
 @onready var close_result_button: Button = $"../DemoResultPanel/ResultMargin/ResultVBox/ResultButtonRow/CloseResultButton"
 @onready var back_to_menu_button: Button = $"../DemoResultPanel/ResultMargin/ResultVBox/ResultButtonRow/BackToMenuButton"
+@onready var go_to_qin_button: Button = $"../DemoResultPanel/ResultMargin/ResultVBox/ResultButtonRow/GoToQinButton"
 
 
 var quest_started := false
@@ -40,6 +41,7 @@ func _ready() -> void:
 	depart_button.pressed.connect(complete_demo)
 	close_result_button.pressed.connect(close_result)
 	back_to_menu_button.pressed.connect(return_to_main_menu)
+	go_to_qin_button.pressed.connect(go_to_qin_checkpoint)
 
 
 # 接受太子丹托付后启动任务。
@@ -134,3 +136,8 @@ func close_result() -> void:
 # 从结算面板返回主菜单。
 func return_to_main_menu() -> void:
 	get_tree().change_scene_to_file("res://MainMenu.tscn")
+
+
+# 从易水启程，进入秦境关隘场景。
+func go_to_qin_checkpoint() -> void:
+	get_tree().change_scene_to_file("res://scene/qin_checkpoint.tscn")
