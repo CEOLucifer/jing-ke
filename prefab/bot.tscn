@@ -4,48 +4,54 @@
 [ext_resource type="Script" uid="uid://brjrfqknajw0i" path="res://script/Bot.cs" id="2_3yluo"]
 [ext_resource type="AnimationLibrary" uid="uid://s7fxbcls0xtt" path="res://art/anim_lib/human.tres" id="2_qhatf"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vuoid"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5h5id"]
 animation = &"human/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_prg0p"]
+animation = &"human/walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0oswy"]
+animation = &"human/slow_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qrvwt"]
+animation = &"human/run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qrvwt"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5h5id")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_prg0p")
+blend_point_1/pos = 0.3
+blend_point_2/node = SubResource("AnimationNodeAnimation_0oswy")
+blend_point_2/pos = 0.6
+blend_point_3/node = SubResource("AnimationNodeAnimation_qrvwt")
+blend_point_3/pos = 1.0
+value_label = "velocity"
+sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6mut0"]
 animation = &"human/jump"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mohlu"]
-animation = &"human/slow_run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_886d2"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vuoid"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5h5id"]
-xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"slow_run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_prg0p"]
-xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0oswy"]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6mut0"]
+xfade_time = 0.2
 advance_mode = 2
 advance_condition = &"jump"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qrvwt"]
-xfade_time = 0.5
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mohlu"]
+xfade_time = 0.2
 advance_mode = 2
-advance_condition = &"idle"
+advance_expression = "!jump"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5q3iu"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_qrvwt")
+states/BlendSpace1D/position = Vector2(474, 77)
 states/End/position = Vector2(860, 77)
 states/Start/position = Vector2(236, 77)
-states/idle/node = SubResource("AnimationNodeAnimation_vuoid")
-states/idle/position = Vector2(451, 77)
 states/jump/node = SubResource("AnimationNodeAnimation_6mut0")
-states/jump/position = Vector2(461, 228)
-states/slow_run/node = SubResource("AnimationNodeAnimation_mohlu")
-states/slow_run/position = Vector2(672, 77)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_886d2"), "idle", "slow_run", SubResource("AnimationNodeStateMachineTransition_5h5id"), "slow_run", "idle", SubResource("AnimationNodeStateMachineTransition_prg0p"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_0oswy"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_qrvwt")]
+states/jump/position = Vector2(474, 222)
+transitions = ["Start", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_vuoid"), "BlendSpace1D", "jump", SubResource("AnimationNodeStateMachineTransition_6mut0"), "jump", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_mohlu")]
 graph_offset = Vector2(-71, -93)
 
 [node name="Y Bot" unique_id=1468951817 instance=ExtResource("1_3oedw")]
@@ -158,6 +164,5 @@ libraries/human = ExtResource("2_qhatf")
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=945036528]
 tree_root = SubResource("AnimationNodeStateMachine_5q3iu")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/idle = false
 parameters/conditions/jump = false
-parameters/conditions/slow_run = false
+parameters/BlendSpace1D/blend_position = 0.28915668

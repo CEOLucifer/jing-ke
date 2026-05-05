@@ -3,10 +3,14 @@
 [ext_resource type="Animation" uid="uid://cuwpn6ejej2ut" path="res://art/anim/human/idle.res" id="1_tdrt7"]
 [ext_resource type="Animation" uid="uid://xx1jsjvbesds" path="res://art/anim/human/slow_run.res" id="2_ha1k8"]
 [ext_resource type="Animation" uid="uid://b8qeo27ro7w1u" path="res://art/anim/human/jump.res" id="2_w2jis"]
+[ext_resource type="Animation" uid="uid://cam10tsar1qm4" path="res://art/anim/human/run.res" id="3_gn6ur"]
+[ext_resource type="Animation" uid="uid://hd1rq35gol1c" path="res://art/anim/human/walk.res" id="4_m1hv7"]
 
 [resource]
 _data = {
 &"idle": ExtResource("1_tdrt7"),
 &"jump": ExtResource("2_w2jis"),
-&"slow_run": ExtResource("2_ha1k8")
+&"run": ExtResource("3_gn6ur"),
+&"slow_run": ExtResource("2_ha1k8"),
+&"walk": ExtResource("4_m1hv7")
 }

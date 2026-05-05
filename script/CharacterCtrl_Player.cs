@@ -35,6 +35,7 @@ public partial class CharacterCtrl_Player : Node
 	{
 		if (Input.IsActionJustPressed("left_click"))
 		{
+			GameCtrl.Instance.command_queue.Clear();
 			var control = GetViewport().GuiGetHoveredControl();
 			if (control == null)
 			{

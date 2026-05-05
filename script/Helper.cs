@@ -38,8 +38,8 @@ public static class Helper
         return null;
     }
 
-    public static void set_condition(this AnimationTree @this, string condition, bool value)
+    public static void set_param(this AnimationTree @this, string condition, Variant value)
     {
-        @this.Set($"parameters/conditions/{condition}", value);
+        @this.Set($"parameters/{condition}", value);
     }
 }
