@@ -1,6 +1,88 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/bg_battlefield.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/warring_states_pattern.png" id="3_pattern"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/bronze_bird_plaque.png" id="4_plaque"]
+[ext_resource type="Texture2D" path="res://art/ui/main_menu/selected/border_reference.jpg" id="5_border"]
+
+[sub_resource type="StyleBoxFlat" id="StylePanelBronze"]
+bg_color = Color(0.045, 0.038, 0.03, 0.78)
+border_color = Color(0.74, 0.53, 0.2, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StylePanelGreen"]
+bg_color = Color(0.022, 0.035, 0.033, 0.76)
+border_color = Color(0.48, 0.73, 0.61, 0.78)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.42)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleButtonNormal"]
+bg_color = Color(0.12, 0.078, 0.04, 0.9)
+border_color = Color(0.47, 0.35, 0.14, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleButtonHover"]
+bg_color = Color(0.18, 0.115, 0.055, 0.96)
+border_color = Color(0.86, 0.66, 0.28, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleButtonPressed"]
+bg_color = Color(0.08, 0.055, 0.035, 0.98)
+border_color = Color(0.68, 0.48, 0.18, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleEmpty"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,3 +92,327 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mainmenu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RootControl" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="CanvasLayer/RootControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackgroundTexture" type="TextureRect" parent="CanvasLayer/RootControl/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PatternWash" type="TextureRect" parent="CanvasLayer/RootControl/Background"]
+modulate = Color(0.35, 0.8, 0.7, 0.12)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="CanvasLayer/RootControl/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.015, 0.012, 0.58)
+
+[node name="BronzeOverlay" type="ColorRect" parent="CanvasLayer/RootControl/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.26, 0.13, 0.04, 0.2)
+
+[node name="TopOrnament" type="TextureRect" parent="CanvasLayer/RootControl"]
+modulate = Color(0.95, 0.72, 0.3, 0.25)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = -24.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("5_border")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BottomOrnament" type="TextureRect" parent="CanvasLayer/RootControl"]
+modulate = Color(0.95, 0.72, 0.3, 0.18)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -76.0
+offset_right = -24.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("5_border")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TitleArea" type="VBoxContainer" parent="CanvasLayer/RootControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 70.0
+offset_top = 64.0
+offset_right = -70.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/RootControl/TitleArea"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.78, 0.34, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.78)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 44
+text = "《荆轲：天命改写》"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer/RootControl/TitleArea"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.82, 0.66, 1)
+theme_override_font_sizes/font_size = 22
+text = "历史宿命，由你改写"
+horizontal_alignment = 1
+
+[node name="TitleOrnament" type="TextureRect" parent="CanvasLayer/RootControl/TitleArea"]
+modulate = Color(0.95, 0.72, 0.28, 0.42)
+custom_minimum_size = Vector2(360, 18)
+layout_mode = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LeftMenuPanel" type="PanelContainer" parent="CanvasLayer/RootControl"]
+custom_minimum_size = Vector2(420, 500)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 76.0
+offset_top = -210.0
+offset_right = 496.0
+offset_bottom = 290.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StylePanelBronze")
+
+[node name="MenuMargin" type="MarginContainer" parent="CanvasLayer/RootControl/LeftMenuPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 34
+
+[node name="ButtonVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="BronzeButtonDecor" type="TextureRect" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
+modulate = Color(0.55, 0.95, 0.85, 0.24)
+custom_minimum_size = Vector2(170, 74)
+layout_mode = 2
+texture = ExtResource("4_plaque")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StartButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleButtonNormal")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "开始新游戏"
+
+[node name="StoryDemoButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleButtonNormal")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "剧情 Demo"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleButtonNormal")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "继续游戏"
+
+[node name="LoadButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleButtonNormal")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "读取存档"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleButtonNormal")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "设置"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/RootControl/LeftMenuPanel/MenuMargin/ButtonVBox"]
+custom_minimum_size = Vector2(300, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.93, 0.78, 0.48, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.56, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.62, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleButtonNormal")
+theme_override_styles/hover = SubResource("StyleButtonHover")
+theme_override_styles/pressed = SubResource("StyleButtonPressed")
+theme_override_styles/focus = SubResource("StyleEmpty")
+text = "退出游戏"
+
+[node name="RightLorePanel" type="PanelContainer" parent="CanvasLayer/RootControl"]
+custom_minimum_size = Vector2(470, 500)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -546.0
+offset_top = -210.0
+offset_right = -76.0
+offset_bottom = 290.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StylePanelGreen")
+
+[node name="LoreMargin" type="MarginContainer" parent="CanvasLayer/RootControl/RightLorePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 28
+
+[node name="LoreVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="LoreFrame" type="TextureRect" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+modulate = Color(0.42, 0.92, 0.82, 0.34)
+custom_minimum_size = Vector2(170, 110)
+layout_mode = 2
+texture = ExtResource("4_plaque")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LoreTitleLabel" type="Label" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.75, 0.32, 1)
+theme_override_font_sizes/font_size = 28
+text = "【天命残卷】"
+horizontal_alignment = 1
+
+[node name="Divider" type="TextureRect" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+modulate = Color(0.95, 0.72, 0.28, 0.42)
+custom_minimum_size = Vector2(350, 18)
+layout_mode = 2
+texture = ExtResource("3_pattern")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LoreTextLabel" type="Label" parent="CanvasLayer/RootControl/RightLorePanel/LoreMargin/LoreVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.82, 0.71, 1)
+theme_override_font_sizes/font_size = 19
+text = "秦并六国之势已成，燕国危在旦夕。
+你将成为荆轲，在易水之畔作出选择。
+
+命运分支：
+你的言语、战斗与抉择，
+都将改变人物关系与历史扰动。
+
+易水之约：
+让天命走向不同的分支，
+亲手写下刺秦前夜的答案。"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/RootControl"]
+
+[node name="MessageDialog" type="AcceptDialog" parent="."]
+visible = false
