@@ -67,6 +67,7 @@ func _build_ui() -> void:
 	left_box.add_child(spacer)
 
 	left_box.add_child(_create_menu_button("开始新游戏", _on_start_pressed))
+	left_box.add_child(_create_menu_button("剧情 Demo", _on_story_demo_pressed))
 	left_box.add_child(_create_menu_button("继续游戏", _on_continue_pressed))
 	left_box.add_child(_create_menu_button("读取存档", _on_load_pressed))
 	left_box.add_child(_create_menu_button("设置", _on_settings_pressed))
@@ -134,6 +135,11 @@ func _create_panel_style(color: Color) -> StyleBoxFlat:
 # 开始新游戏，进入易水河畔场景。
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://scene/main.tscn")
+
+
+# 进入旧版剧情 Demo 原型。
+func _on_story_demo_pressed() -> void:
+	get_tree().change_scene_to_file("res://WorldScene.tscn")
 
 
 # 显示继续游戏暂未开放提示。
