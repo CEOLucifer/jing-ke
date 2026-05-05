@@ -1,6 +1,10 @@
 extends Node
 
 
+signal dagger_received
+signal map_received
+
+
 @onready var dialogue_panel: Node = $"../DialoguePanel"
 @onready var quest_panel: PanelContainer = $"../QuestPanel"
 @onready var quest_title_label: Label = $"../QuestPanel/QuestMargin/QuestVBox/QuestTitleLabel"
@@ -49,6 +53,8 @@ func start_quest() -> void:
 	quest_ready_to_depart = false
 	demo_completed = false
 	quest_panel.visible = true
+	quest_panel.modulate.a = 0.0
+	create_tween().tween_property(quest_panel, "modulate:a", 1.0, 0.2)
 	refresh_quest_ui()
 
 
@@ -58,6 +64,7 @@ func receive_dagger() -> void:
 		return
 
 	has_dagger = true
+	dagger_received.emit()
 	refresh_quest_ui()
 
 
@@ -67,6 +74,7 @@ func receive_map() -> void:
 		return
 
 	has_map = true
+	map_received.emit()
 	refresh_quest_ui()
 
 
@@ -114,6 +122,8 @@ func complete_demo() -> void:
 
 	result_stats_label.text = "天命值：+10\n历史扰动值：+15\n太子丹关系：+20\n获得物品：徐夫人匕首、督亢地图"
 	result_panel.visible = true
+	result_panel.modulate.a = 0.0
+	create_tween().tween_property(result_panel, "modulate:a", 1.0, 0.25)
 
 
 # 关闭结算面板，留在当前场景继续操作。
