@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dcc234vwrmq2j"
-path="res://.godot/imported/12.fbx-0778facad7b73b3690c56b7f8fa0098e.scn"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengqiang/12.fbx"
-dest_files=["res://.godot/imported/12.fbx-0778facad7b73b3690c56b7f8fa0098e.scn"]
 
 [params]
 

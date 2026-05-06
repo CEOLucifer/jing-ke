@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://clww17nbtvvnk"
-path="res://.godot/imported/LimeExp_3.fbx-88fe323bbae5dd91fb61182dd13921fa.scn"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/LimeExp_3.fbx"
-dest_files=["res://.godot/imported/LimeExp_3.fbx-88fe323bbae5dd91fb61182dd13921fa.scn"]
 
 [params]
 

@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsoopkt7hlk5i"
-path.s3tc="res://.godot/imported/grass.jpg-3a98436c6799e1c6fd37dddf5b7600cf.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://addons/open-world-database/demo/resources/terrain/textures/grass.jpg"
-dest_files=["res://.godot/imported/grass.jpg-3a98436c6799e1c6fd37dddf5b7600cf.s3tc.ctex"]
 
 [params]
 

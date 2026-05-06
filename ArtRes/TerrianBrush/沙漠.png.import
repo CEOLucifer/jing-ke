@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uu5bfvv1rloe"
-path="res://.godot/imported/沙漠.png-d52376105f71a0c79a6f7ebb048ca386.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/沙漠.png"
-dest_files=["res://.godot/imported/沙漠.png-d52376105f71a0c79a6f7ebb048ca386.ctex"]
 
 [params]
 

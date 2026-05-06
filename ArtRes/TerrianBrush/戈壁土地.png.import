@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8ql7gpujuq6g"
-path="res://.godot/imported/戈壁土地.png-714e9065c0edfcd5ea568f2a2b5ba47f.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/戈壁土地.png"
-dest_files=["res://.godot/imported/戈壁土地.png-714e9065c0edfcd5ea568f2a2b5ba47f.ctex"]
 
 [params]
 

@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mfvhg28rgxbl"
-path="res://.godot/imported/高光遮罩_000626.JPG-e01df447f07aa5a8f40f82322f983c7d.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/新建文件夹/高光遮罩_000626.JPG"
-dest_files=["res://.godot/imported/高光遮罩_000626.JPG-e01df447f07aa5a8f40f82322f983c7d.ctex"]
 
 [params]
 

@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8g3e76kyygjt"
-path="res://.godot/imported/半旱地02.png-b9f57f066600c672c9f9fabca27588ef.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/半旱地02.png"
-dest_files=["res://.godot/imported/半旱地02.png-b9f57f066600c672c9f9fabca27588ef.ctex"]
 
 [params]
 

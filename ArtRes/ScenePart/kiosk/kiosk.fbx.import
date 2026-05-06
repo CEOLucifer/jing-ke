@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://0x5tno5uuq21"
-path="res://.godot/imported/kiosk.fbx-c73e87308541a2bcd723abf40e2f970d.scn"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/kiosk/kiosk.fbx"
-dest_files=["res://.godot/imported/kiosk.fbx-c73e87308541a2bcd723abf40e2f970d.scn"]
 
 [params]
 

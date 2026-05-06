@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://doc4edfp5a8vq"
-path="res://.godot/imported/Ansi_LOD_N.tga-01e91fc71f74cfa37943f65dd270e49e.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/Role/Ansi/tex/Ansi_LOD_N.tga"
-dest_files=["res://.godot/imported/Ansi_LOD_N.tga-01e91fc71f74cfa37943f65dd270e49e.ctex"]
 
 [params]
 

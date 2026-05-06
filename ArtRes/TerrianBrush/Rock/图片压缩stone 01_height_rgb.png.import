@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmundnipo5knn"
-path="res://.godot/imported/图片压缩stone 01_height_rgb.png-1a8be22f45344d903621f0d0c026f681.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/Rock/图片压缩stone 01_height_rgb.png"
-dest_files=["res://.godot/imported/图片压缩stone 01_height_rgb.png-1a8be22f45344d903621f0d0c026f681.ctex"]
 
 [params]
 

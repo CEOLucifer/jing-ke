@@ -3,10 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqtvt7fwkhg24"
-path="res://.godot/imported/18_2.png-142bf90421e2b27a02f99a4a8649eeba.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 generator_parameters={
 "md5": "5c407dedb0a54a18afeaeb8c9d0f12eb"
 }
@@ -14,7 +11,6 @@ generator_parameters={
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengqiang/18_2.png"
-dest_files=["res://.godot/imported/18_2.png-142bf90421e2b27a02f99a4a8649eeba.ctex"]
 
 [params]
 

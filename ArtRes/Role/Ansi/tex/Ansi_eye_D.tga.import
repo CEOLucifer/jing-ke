@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://doct16kc2n5vi"
-path.s3tc="res://.godot/imported/Ansi_eye_D.tga-2057c3dd446dc3938e5118d4c65fea14.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/Role/Ansi/tex/Ansi_eye_D.tga"
-dest_files=["res://.godot/imported/Ansi_eye_D.tga-2057c3dd446dc3938e5118d4c65fea14.s3tc.ctex"]
 
 [params]
 

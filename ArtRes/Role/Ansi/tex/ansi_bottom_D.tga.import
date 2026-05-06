@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cav3igaoie4io"
-path.s3tc="res://.godot/imported/ansi_bottom_D.tga-fc1307b5d49f065da62fdb981b091ca6.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/Role/Ansi/tex/ansi_bottom_D.tga"
-dest_files=["res://.godot/imported/ansi_bottom_D.tga-fc1307b5d49f065da62fdb981b091ca6.s3tc.ctex"]
 
 [params]
 

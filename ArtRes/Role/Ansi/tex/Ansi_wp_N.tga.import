@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://caf4pqqvbqkkv"
-path="res://.godot/imported/Ansi_wp_N.tga-65e2f35fbf5431c0e06beae1161aeb89.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/Role/Ansi/tex/Ansi_wp_N.tga"
-dest_files=["res://.godot/imported/Ansi_wp_N.tga-65e2f35fbf5431c0e06beae1161aeb89.ctex"]
 
 [params]
 

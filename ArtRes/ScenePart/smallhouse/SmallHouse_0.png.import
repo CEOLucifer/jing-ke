@@ -2,24 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbdx52f4bjiak"
-path.s3tc="res://.godot/imported/SmallHouse_0.png-dc04fb073407ac29bde5433dd6003a8e.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "b6bb040b4ca455f35eabab5e140dabad"
-}
+uid="uid://vp00w8w5r8nt"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/smallhouse/SmallHouse_0.png"
-dest_files=["res://.godot/imported/SmallHouse_0.png-dc04fb073407ac29bde5433dd6003a8e.s3tc.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +19,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -41,4 +33,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

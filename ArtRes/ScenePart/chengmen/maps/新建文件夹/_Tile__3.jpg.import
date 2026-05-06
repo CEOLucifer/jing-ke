@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5jaxfef3ehf3"
-path="res://.godot/imported/_Tile__3.jpg-a1cd6fecca0176ad891dd7784a822e28.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/新建文件夹/_Tile__3.jpg"
-dest_files=["res://.godot/imported/_Tile__3.jpg-a1cd6fecca0176ad891dd7784a822e28.ctex"]
 
 [params]
 

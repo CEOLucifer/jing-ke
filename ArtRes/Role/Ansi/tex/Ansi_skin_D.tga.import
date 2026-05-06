@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cysalkvlrcyvp"
-path.s3tc="res://.godot/imported/Ansi_skin_D.tga-2f38b8a9046ae40a881d399826ce7b21.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/Role/Ansi/tex/Ansi_skin_D.tga"
-dest_files=["res://.godot/imported/Ansi_skin_D.tga-2f38b8a9046ae40a881d399826ce7b21.s3tc.ctex"]
 
 [params]
 

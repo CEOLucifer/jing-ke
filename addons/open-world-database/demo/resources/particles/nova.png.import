@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmfgf6gs8udgw"
-path.bptc="res://.godot/imported/nova.png-db3e0d9cb9daab236249012f383284fb.bptc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://addons/open-world-database/demo/resources/particles/nova.png"
-dest_files=["res://.godot/imported/nova.png-db3e0d9cb9daab236249012f383284fb.bptc.ctex"]
 
 [params]
 

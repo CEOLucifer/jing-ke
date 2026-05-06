@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy20wbqif56j5"
-path="res://.godot/imported/3.jpg-36ac25183402ec1947dd2454e3faa475.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/3.jpg"
-dest_files=["res://.godot/imported/3.jpg-36ac25183402ec1947dd2454e3faa475.ctex"]
 
 [params]
 

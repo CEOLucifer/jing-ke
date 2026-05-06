@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://gjidywrcquq0"
-path="res://.godot/imported/A dilapidated house.fbx-b4e5a74f6c8b87e38107d4691e16c802.scn"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/A dilapidated house/A dilapidated house.fbx"
-dest_files=["res://.godot/imported/A dilapidated house.fbx-b4e5a74f6c8b87e38107d4691e16c802.scn"]
 
 [params]
 

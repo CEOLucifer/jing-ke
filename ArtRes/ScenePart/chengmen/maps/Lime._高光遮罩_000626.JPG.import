@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq6xsgiox14tx"
-path="res://.godot/imported/Lime._高光遮罩_000626.JPG-a8dc4a5ed28769421b13fe5c6fdd4e6e.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/Lime._高光遮罩_000626.JPG"
-dest_files=["res://.godot/imported/Lime._高光遮罩_000626.JPG-a8dc4a5ed28769421b13fe5c6fdd4e6e.ctex"]
 
 [params]
 

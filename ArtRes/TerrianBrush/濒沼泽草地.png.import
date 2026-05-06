@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cptjn2aopcs25"
-path="res://.godot/imported/濒沼泽草地.png-9615add55eb72fcc898f496160915c68.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/濒沼泽草地.png"
-dest_files=["res://.godot/imported/濒沼泽草地.png-9615add55eb72fcc898f496160915c68.ctex"]
 
 [params]
 

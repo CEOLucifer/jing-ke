@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cys75holru82g"
-path="res://.godot/imported/图片压缩stone 01_diffuse_rgb.png-7e9746c50429d67005a36021c6b317e4.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/Rock/图片压缩stone 01_diffuse_rgb.png"
-dest_files=["res://.godot/imported/图片压缩stone 01_diffuse_rgb.png-7e9746c50429d67005a36021c6b317e4.ctex"]
 
 [params]
 

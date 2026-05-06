@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://708opbfn2pak"
-path="res://.godot/imported/草泥混合01.png-ab770b04ce2278ba5b255aab628a0030.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/草泥混合01.png"
-dest_files=["res://.godot/imported/草泥混合01.png-ab770b04ce2278ba5b255aab628a0030.ctex"]
 
 [params]
 

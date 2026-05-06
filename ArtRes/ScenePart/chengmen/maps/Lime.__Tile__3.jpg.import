@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://yydc03ph0rkr"
-path.s3tc="res://.godot/imported/Lime.__Tile__3.jpg-c253338e3d39d9abb376bae9359df42f.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/Lime.__Tile__3.jpg"
-dest_files=["res://.godot/imported/Lime.__Tile__3.jpg-c253338e3d39d9abb376bae9359df42f.s3tc.ctex"]
 
 [params]
 

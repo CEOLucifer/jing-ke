@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ie88rboe1ewq"
-path="res://.godot/imported/Ansi_fur_N.tga-9ce09bf196e262538f39bc422758db0c.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/Role/Ansi/tex/Ansi_fur_N.tga"
-dest_files=["res://.godot/imported/Ansi_fur_N.tga-9ce09bf196e262538f39bc422758db0c.ctex"]
 
 [params]
 

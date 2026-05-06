@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwk0pg61pfv81"
-path="res://.godot/imported/高寒林地.png-9a271cfdddbaa2ba067869873d3f08be.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/TerrianBrush/高寒林地.png"
-dest_files=["res://.godot/imported/高寒林地.png-9a271cfdddbaa2ba067869873d3f08be.ctex"]
 
 [params]
 

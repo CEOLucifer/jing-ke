@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dx5toaythynad"
-path.s3tc="res://.godot/imported/Lime._石壁_01r.jpg-4558dee28908ddf66fe1e53e33502beb.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/Lime._石壁_01r.jpg"
-dest_files=["res://.godot/imported/Lime._石壁_01r.jpg-4558dee28908ddf66fe1e53e33502beb.s3tc.ctex"]
 
 [params]
 

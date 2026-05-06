@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cjstmw2pyvcnv"
-path="res://.godot/imported/SmallHouse.fbx-abb96bdf614bb750f887d9a10063b379.scn"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/smallhouse/SmallHouse.fbx"
-dest_files=["res://.godot/imported/SmallHouse.fbx-abb96bdf614bb750f887d9a10063b379.scn"]
 
 [params]
 

@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cj4bqiiy6x5oe"
-path="res://.godot/imported/民居瓦02.jpg-6ede773c2059989b5663031c160ab3e5.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/新建文件夹/民居瓦02.jpg"
-dest_files=["res://.godot/imported/民居瓦02.jpg-6ede773c2059989b5663031c160ab3e5.ctex"]
 
 [params]
 

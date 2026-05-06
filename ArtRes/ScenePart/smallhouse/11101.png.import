@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ifykb7getojn"
-path="res://.godot/imported/11101.png-ebf84b1eecf564d25d9ed8362f70c76b.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/smallhouse/11101.png"
-dest_files=["res://.godot/imported/11101.png-ebf84b1eecf564d25d9ed8362f70c76b.ctex"]
 
 [params]
 

@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jhmqbip701ra"
-path.s3tc="res://.godot/imported/___02.jpg-f388997e8460329aa0196b11327a9f04.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/新建文件夹/___02.jpg"
-dest_files=["res://.godot/imported/___02.jpg-f388997e8460329aa0196b11327a9f04.s3tc.ctex"]
 
 [params]
 

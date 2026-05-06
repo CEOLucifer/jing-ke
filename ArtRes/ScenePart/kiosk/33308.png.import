@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dilp35h3evj11"
-path="res://.godot/imported/33308.png-a7ca1a640bbd17fd39df05326fb1b643.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/kiosk/33308.png"
-dest_files=["res://.godot/imported/33308.png-a7ca1a640bbd17fd39df05326fb1b643.ctex"]
 
 [params]
 

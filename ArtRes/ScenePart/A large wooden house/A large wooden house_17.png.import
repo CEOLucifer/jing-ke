@@ -3,10 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b66y75i8vawnn"
-path="res://.godot/imported/A large wooden house_17.png-12f37ca1f58b5f05c3e3b2e0489d231a.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 generator_parameters={
 "md5": "3e4a384b52d50db8b6670a6dcafeaf6e"
 }
@@ -14,7 +11,6 @@ generator_parameters={
 [deps]
 
 source_file="res://ArtRes/ScenePart/A large wooden house/A large wooden house_17.png"
-dest_files=["res://.godot/imported/A large wooden house_17.png-12f37ca1f58b5f05c3e3b2e0489d231a.ctex"]
 
 [params]
 

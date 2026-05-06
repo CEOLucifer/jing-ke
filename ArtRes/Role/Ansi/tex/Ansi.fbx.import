@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b117seblflp40"
-path="res://.godot/imported/Ansi.fbx-35447c2bced7ae13cde51474dc32b47d.scn"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/Role/Ansi/tex/Ansi.fbx"
-dest_files=["res://.godot/imported/Ansi.fbx-35447c2bced7ae13cde51474dc32b47d.scn"]
 
 [params]
 

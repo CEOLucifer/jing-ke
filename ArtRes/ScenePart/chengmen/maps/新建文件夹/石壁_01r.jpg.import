@@ -3,16 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://li4m51q4imyd"
-path.s3tc="res://.godot/imported/石壁_01r.jpg-fdd90d2c34b98173e2376e6d2fa0336a.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/chengmen/maps/新建文件夹/石壁_01r.jpg"
-dest_files=["res://.godot/imported/石壁_01r.jpg-fdd90d2c34b98173e2376e6d2fa0336a.s3tc.ctex"]
 
 [params]
 

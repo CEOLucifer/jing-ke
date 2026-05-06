@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dy8373v0atdu5"
-path="res://.godot/imported/A large wooden house.fbx-568f7e4bbaf04242b2a2b391474047ac.scn"
+valid=false
 
 [deps]
 
 source_file="res://ArtRes/ScenePart/A large wooden house/A large wooden house.fbx"
-dest_files=["res://.godot/imported/A large wooden house.fbx-568f7e4bbaf04242b2a2b391474047ac.scn"]
 
 [params]
 

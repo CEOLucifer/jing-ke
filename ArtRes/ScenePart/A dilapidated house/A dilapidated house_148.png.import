@@ -3,10 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq8uogu2y3gha"
-path="res://.godot/imported/A dilapidated house_148.png-49850849ada1b17145aca22e7a36ae47.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 generator_parameters={
 "md5": "6339bd804a78ece5572c6f7717554f29"
 }
@@ -14,7 +11,6 @@ generator_parameters={
 [deps]
 
 source_file="res://ArtRes/ScenePart/A dilapidated house/A dilapidated house_148.png"
-dest_files=["res://.godot/imported/A dilapidated house_148.png-49850849ada1b17145aca22e7a36ae47.ctex"]
 
 [params]
 
