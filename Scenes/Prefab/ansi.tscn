@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://4l12xhy50roi"]
+
+[ext_resource type="PackedScene" uid="uid://dx1x4epjpeek1" path="res://ArtRes/Role/Ansi/Ansi.FBX" id="1_i1qbj"]
+
+[node name="Ansi" unique_id=260591497 instance=ExtResource("1_i1qbj")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
