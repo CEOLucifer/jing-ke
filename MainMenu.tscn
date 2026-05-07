@@ -227,16 +227,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -615.0
-offset_top = 138.0
-offset_right = -30.0
-offset_bottom = 336.0
+offset_left = -575.0
+offset_top = 168.0
+offset_right = 10.0
+offset_bottom = 366.0
 grow_horizontal = 0
 theme_override_constants/separation = 8
 alignment = 1
 
 [node name="TitleTexture" type="TextureRect" parent="CanvasLayer/RootControl/TitleArea"]
-custom_minimum_size = Vector2(620, 186)
+custom_minimum_size = Vector2(730, 220)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("10_game_title")
@@ -817,15 +817,15 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="RightLorePanel" type="Control" parent="CanvasLayer/RootControl/LoreDialogCard"]
-z_index = 1
+z_index = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 42.0
-offset_right = -30.0
-offset_bottom = -34.0
+offset_left = 120.0
+offset_top = 115.0
+offset_right = -120.0
+offset_bottom = -105.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -851,15 +851,20 @@ theme_override_styles/pressed = SubResource("StyleButtonPressed")
 theme_override_styles/focus = SubResource("StyleEmpty")
 text = "X"
 
-[node name="LoreGlassFill" type="ColorRect" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel"]
+[node name="LoreGlassFill" type="ColorRect" parent="CanvasLayer/RootControl/LoreDialogCard"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = 58.0
+offset_right = -58.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.018, 0.016, 0.012, 0.78)
+color = Color(0.025, 0.022, 0.018, 0.68)
 
 [node name="LoreMargin" type="MarginContainer" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel"]
 layout_mode = 1
@@ -868,10 +873,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 96
-theme_override_constants/margin_top = 94
-theme_override_constants/margin_right = 96
-theme_override_constants/margin_bottom = 72
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="LoreVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/LoreDialogCard/RightLorePanel/LoreMargin"]
 layout_mode = 2
@@ -988,27 +993,32 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="DialogPanel" type="Control" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 130.0
+offset_top = 115.0
+offset_right = -130.0
+offset_bottom = -105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogGlassFill" type="ColorRect" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 42.0
-offset_right = -30.0
-offset_bottom = -34.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DialogGlassFill" type="ColorRect" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = 92.0
+offset_top = 45.0
+offset_right = -92.0
+offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.018, 0.016, 0.012, 0.78)
+color = Color(0.025, 0.022, 0.018, 0.88)
 
 [node name="DialogMargin" type="MarginContainer" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel"]
 layout_mode = 1
@@ -1017,10 +1027,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 110
-theme_override_constants/margin_top = 92
-theme_override_constants/margin_right = 110
-theme_override_constants/margin_bottom = 78
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="DialogVBox" type="VBoxContainer" parent="CanvasLayer/RootControl/StyledMessageOverlay/DialogCard/DialogPanel/DialogMargin"]
 layout_mode = 2
