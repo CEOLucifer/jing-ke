@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cyvjgd7l0eybm"]
+[gd_scene format=3 uid="uid://prince_mansion_demo"]
 
 [ext_resource type="Script" path="res://scripts/SimpleFreeMovePlayer.gd" id="1_player"]
 [ext_resource type="Script" path="res://scripts/SimpleCameraFollow.gd" id="2_camera"]
@@ -9,110 +9,98 @@
 [sub_resource type="BoxShape3D" id="BoxShape_player"]
 size = Vector3(0.8, 1.8, 0.8)
 [sub_resource type="StandardMaterial3D" id="Mat_ground"]
-albedo_color = Color(0.07, 0.08, 0.09, 1)
-roughness = 0.95
-[sub_resource type="StandardMaterial3D" id="Mat_road"]
-albedo_color = Color(0.18, 0.16, 0.13, 1)
+albedo_color = Color(0.25, 0.22, 0.16, 1)
 roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="Mat_stone"]
+albedo_color = Color(0.38, 0.36, 0.31, 1)
+roughness = 0.95
 [sub_resource type="StandardMaterial3D" id="Mat_wood"]
-albedo_color = Color(0.13, 0.08, 0.045, 1)
-roughness = 0.86
-[sub_resource type="StandardMaterial3D" id="Mat_guard"]
-albedo_color = Color(0.35, 0.06, 0.035, 1)
-[sub_resource type="StandardMaterial3D" id="Mat_fire"]
-albedo_color = Color(1, 0.32, 0.06, 1)
+albedo_color = Color(0.22, 0.11, 0.055, 1)
+roughness = 0.82
+[sub_resource type="StandardMaterial3D" id="Mat_flag"]
+albedo_color = Color(0.42, 0.05, 0.04, 1)
+[sub_resource type="StandardMaterial3D" id="Mat_npc"]
+albedo_color = Color(0.15, 0.45, 0.48, 1)
+[sub_resource type="StandardMaterial3D" id="Mat_portal"]
+albedo_color = Color(0.95, 0.55, 0.12, 1)
 emission_enabled = true
-emission = Color(1, 0.25, 0.04, 1)
-emission_energy_multiplier = 2.0
-[sub_resource type="Environment" id="Environment_qin_night"]
+emission = Color(0.95, 0.45, 0.08, 1)
+emission_energy_multiplier = 1.6
+[sub_resource type="Environment" id="Env_day"]
 background_mode = 1
-background_color = Color(0.035, 0.045, 0.07, 1)
+background_color = Color(0.46, 0.54, 0.62, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.2, 0.25, 0.34, 1)
-ambient_light_energy = 0.42
+ambient_light_color = Color(0.68, 0.65, 0.58, 1)
+ambient_light_energy = 0.55
 fog_enabled = true
-fog_density = 0.018
+fog_density = 0.006
 
-[node name="QinCheckpoint" type="Node3D"]
+[node name="PrinceMansion" type="Node3D"]
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(24, 0, 0, 0, 0.15, 0, 0, 0, 18, 0, -0.08, 0)
 mesh = SubResource("BoxMesh_unit")
 surface_material_override/0 = SubResource("Mat_ground")
 
-[node name="Road" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.4, 0, 0, 0, 0.08, 0, 0, 0, 18, 0, 0.08, 0)
-mesh = SubResource("BoxMesh_unit")
-surface_material_override/0 = SubResource("Mat_road")
+[node name="CouncilHall" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
 
-[node name="GateLeft" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.4, 0, 0, 0, 3.2, 0, 0, 0, 1.0, -4.4, 1.6, -4.8)
+[node name="HallBase" type="MeshInstance3D" parent="CouncilHall"]
+transform = Transform3D(11, 0, 0, 0, 0.7, 0, 0, 0, 5.2, 0, 0.35, 0)
+mesh = SubResource("BoxMesh_unit")
+surface_material_override/0 = SubResource("Mat_stone")
+
+[node name="HallBody" type="MeshInstance3D" parent="CouncilHall"]
+transform = Transform3D(9.5, 0, 0, 0, 2.4, 0, 0, 0, 3.2, 0, 1.65, 0.4)
 mesh = SubResource("BoxMesh_unit")
 surface_material_override/0 = SubResource("Mat_wood")
 
-[node name="GateRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.4, 0, 0, 0, 3.2, 0, 0, 0, 1.0, 4.4, 1.6, -4.8)
+[node name="HallRoof" type="MeshInstance3D" parent="CouncilHall"]
+transform = Transform3D(11.5, 0, 0, 0, 0.45, 0, 0, 0, 4.6, 0, 3.05, 0.25)
 mesh = SubResource("BoxMesh_unit")
 surface_material_override/0 = SubResource("Mat_wood")
 
-[node name="GateBeam" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.7, 0, 0, 0, 0.45, 0, 0, 0, 0.6, 0, 3.55, -4.8)
+[node name="MapTable" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.8, 0, 0, 0, 0.35, 0, 0, 0, 1.6, 0, 0.35, 1.6)
 mesh = SubResource("BoxMesh_unit")
 surface_material_override/0 = SubResource("Mat_wood")
 
-[node name="Barricade" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.2, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.45, -2.6)
+[node name="FlagLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.12, 0, 0, 0, 3.8, 0, 0, 0, 0.12, -7.5, 1.9, -0.2)
 mesh = SubResource("BoxMesh_unit")
 surface_material_override/0 = SubResource("Mat_wood")
 
-[node name="TorchLeft" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, -3.0, 2.05, -2.8)
+[node name="FlagClothLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.1, 0, 0, 0, 0.08, -6.85, 3.0, -0.2)
 mesh = SubResource("BoxMesh_unit")
-surface_material_override/0 = SubResource("Mat_fire")
-
-[node name="TorchRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, 3.0, 2.05, -2.8)
-mesh = SubResource("BoxMesh_unit")
-surface_material_override/0 = SubResource("Mat_fire")
+surface_material_override/0 = SubResource("Mat_flag")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 5.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 6)
 script = ExtResource("1_player")
 
 [node name="PlayerBody" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(0.65, 0, 0, 0, 1.55, 0, 0, 0, 0.65, 0, 0, 0)
 mesh = SubResource("BoxMesh_unit")
-surface_material_override/0 = SubResource("Mat_guard")
+surface_material_override/0 = SubResource("Mat_flag")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("BoxShape_player")
 
 [node name="NpcMarker" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.8, 0, 0, 0, 1.8, 0, 0, 0, 0.8, 0, 0.9, -1.1)
+transform = Transform3D(0.8, 0, 0, 0, 1.8, 0, 0, 0, 0.8, -2.5, 0.9, 1.0)
 mesh = SubResource("BoxMesh_unit")
-surface_material_override/0 = SubResource("Mat_guard")
+surface_material_override/0 = SubResource("Mat_npc")
 
 [node name="PortalMarker" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 1.8, 0, 0.12, -7.0)
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 1.8, 5.6, 0.12, 5.8)
 mesh = SubResource("BoxMesh_unit")
-surface_material_override/0 = SubResource("Mat_fire")
+surface_material_override/0 = SubResource("Mat_portal")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 8, 0)
-light_color = Color(0.55, 0.66, 0.9, 1)
-light_energy = 0.75
-
-[node name="TorchLightLeft" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 2.2, -2.8)
-light_color = Color(1, 0.47, 0.22, 1)
-light_energy = 1.15
-omni_range = 5.5
-
-[node name="TorchLightRight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0, 2.2, -2.8)
-light_color = Color(1, 0.47, 0.22, 1)
-light_energy = 1.15
-omni_range = 5.5
+light_energy = 0.8
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 current = true
@@ -121,14 +109,14 @@ target = NodePath("../Player")
 offset = Vector3(6, 7, 8)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_qin_night")
+environment = SubResource("Env_day")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TaskPanel" type="PanelContainer" parent="CanvasLayer"]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 420.0
+offset_right = 390.0
 offset_bottom = 160.0
 
 [node name="TaskMargin" type="MarginContainer" parent="CanvasLayer/TaskPanel"]
@@ -170,6 +158,10 @@ offset_bottom = 390.0
 
 [node name="MessageMargin" type="MarginContainer" parent="CanvasLayer/MessagePanel"]
 layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
 
 [node name="MessageVBox" type="VBoxContainer" parent="CanvasLayer/MessagePanel/MessageMargin"]
 layout_mode = 2
@@ -189,6 +181,10 @@ text = "确认"
 
 [node name="ChoicePanel" type="PanelContainer" parent="CanvasLayer"]
 visible = false
+offset_left = 310.0
+offset_top = 150.0
+offset_right = 870.0
+offset_bottom = 430.0
 
 [node name="ChoiceMargin" type="MarginContainer" parent="CanvasLayer/ChoicePanel"]
 layout_mode = 2
@@ -221,16 +217,17 @@ script = ExtResource("4_return")
 
 [node name="FlowController" type="Node" parent="."]
 script = ExtResource("3_flow")
-scene_title = "秦境关隘"
-objective_text = "当前目标：与秦军守卫交涉，凭地图与信物入秦。WASD移动，E交互。"
-npc_name = "秦军守卫"
-npc_dialogue = "守卫查验督亢地图与入秦信物后放行。若强闯，刺秦计划会提前暴露。"
-npc_quest_stage = "to_xianyang_gate"
-npc_history_delta = 5
-portal_name = "咸阳宫门"
-next_scene_path = "res://scene/xianyang_gate.tscn"
-portal_required_field = "has_map"
-portal_missing_message = "缺少督亢地图，无法以燕使身份入秦。"
-portal_quest_stage = "xianyang_gate"
-portal_chapter = 4
-portal_state_field = "passed_qin_checkpoint"
+scene_title = "太子丹府 / 议事厅"
+objective_text = "当前目标：与太子丹确认刺秦计划，取得入秦信物。"
+npc_name = "太子丹"
+npc_dialogue = "太子丹低声交付最后的信物：此去秦境，只能以燕使身份入关。"
+npc_state_field = "has_mission_token"
+npc_quest_stage = "to_qin_checkpoint"
+npc_fate_delta = 3
+npc_relationship_delta = 5
+portal_name = "秦境关隘"
+next_scene_path = "res://scene/qin_checkpoint.tscn"
+portal_required_field = "has_mission_token"
+portal_missing_message = "还未取得太子丹交付的入秦信物。"
+portal_quest_stage = "qin_checkpoint_guard"
+portal_chapter = 3

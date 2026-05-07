@@ -102,6 +102,9 @@ public partial class Character : Node
 			var next_pos = nav_agent.GetNextPathPosition();
 			var direction = (next_pos - root.Position).Normalized();
 			root.Position += direction * (float)(speed * delta);
+			var position = root.Position;
+			position.Y = Mathf.Lerp(position.Y, GetDemoGroundHeight(position), 12f * (float)delta);
+			root.Position = position;
 
 			// 调整朝向
 			root.LookAt(next_pos, Vector3.Up, true);
@@ -117,6 +120,53 @@ public partial class Character : Node
 	{
 		is_moving = false;
 		anim_player.Play("human/idle");
+	}
+
+	private float GetDemoGroundHeight(Vector3 position)
+	{
+		var palaceFrontHeight = GetSteppedHeight(
+			position,
+			new Vector2(-8.4f, 16.4f),
+			new Vector2(5.6f, 20.1f),
+			new float[] { 6.31f, 7.03f, 7.75f, 8.47f, 9.19f },
+			new float[] { 0.0f, 0.24f, 0.48f, 0.72f, 0.96f, 1.2f }
+		);
+		if (palaceFrontHeight >= 0)
+		{
+			return palaceFrontHeight;
+		}
+
+		var rearPalaceHeight = GetSteppedHeight(
+			position,
+			new Vector2(-13.0f, 21.0f),
+			new Vector2(14.0f, 21.5f),
+			new float[] { 14.0f },
+			new float[] { 1.2f, 1.2f }
+		);
+		if (rearPalaceHeight >= 0)
+		{
+			return rearPalaceHeight;
+		}
+
+		return 0.0f;
+	}
+
+	private float GetSteppedHeight(Vector3 position, Vector2 xRange, Vector2 zRange, float[] zThresholds, float[] heights)
+	{
+		if (position.X < xRange.X || position.X > xRange.Y || position.Z < zRange.X || position.Z > zRange.Y)
+		{
+			return -1.0f;
+		}
+
+		for (var i = 0; i < zThresholds.Length; i++)
+		{
+			if (position.Z < zThresholds[i])
+			{
+				return heights[i];
+			}
+		}
+
+		return heights[^1];
 	}
 
 	#endregion
