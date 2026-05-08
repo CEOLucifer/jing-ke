@@ -35,9 +35,9 @@ environment = SubResource("Env_result")
 
 [node name="ResultPanel" type="PanelContainer" parent="CanvasLayer"]
 offset_left = 260.0
-offset_top = 120.0
+offset_top = 70.0
 offset_right = 900.0
-offset_bottom = 500.0
+offset_bottom = 575.0
 
 [node name="ResultMargin" type="MarginContainer" parent="CanvasLayer/ResultPanel"]
 layout_mode = 2
@@ -57,7 +57,7 @@ horizontal_alignment = 1
 
 [node name="BodyLabel" type="Label" parent="CanvasLayer/ResultPanel/ResultMargin/ResultVBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 18
 autowrap_mode = 3
 
 [node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/ResultPanel/ResultMargin/ResultVBox"]
@@ -70,7 +70,7 @@ text = "返回主菜单"
 
 [node name="RestartButton" type="Button" parent="CanvasLayer/ResultPanel/ResultMargin/ResultVBox/ButtonRow"]
 layout_mode = 2
-text = "重新开始"
+text = "重新开始 Demo"
 
 [node name="DemoResultController" type="Node" parent="CanvasLayer"]
 script = ExtResource("1_result")

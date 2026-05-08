@@ -221,16 +221,18 @@ script = ExtResource("4_return")
 
 [node name="FlowController" type="Node" parent="."]
 script = ExtResource("3_flow")
-scene_title = "秦境关隘"
-objective_text = "当前目标：与秦军守卫交涉，凭地图与信物入秦。WASD移动，E交互。"
+scene_title = "第三幕 入秦关隘"
+objective_text = "当前目标：向秦军守卫出示地图与信物。WASD移动，E交互。"
 npc_name = "秦军守卫"
 npc_dialogue = "守卫查验督亢地图与入秦信物后放行。若强闯，刺秦计划会提前暴露。"
+npc_state_field = "passed_qin_checkpoint"
 npc_quest_stage = "to_xianyang_gate"
 npc_history_delta = 5
+npc_feedback = "已通过秦境关隘"
 portal_name = "咸阳宫门"
 next_scene_path = "res://scene/xianyang_gate.tscn"
-portal_required_field = "has_map"
-portal_missing_message = "缺少督亢地图，无法以燕使身份入秦。"
+portal_required_field = "passed_qin_checkpoint"
+portal_missing_message = "还未通过秦军守卫盘查。"
 portal_quest_stage = "xianyang_gate"
 portal_chapter = 4
-portal_state_field = "passed_qin_checkpoint"
+portal_feedback = "前往：咸阳宫门"

@@ -217,17 +217,19 @@ script = ExtResource("4_return")
 
 [node name="FlowController" type="Node" parent="."]
 script = ExtResource("3_flow")
-scene_title = "太子丹府 / 议事厅"
-objective_text = "当前目标：与太子丹确认刺秦计划，取得入秦信物。"
+scene_title = "第二幕 密议刺秦"
+objective_text = "当前目标：确认刺秦计划，取得入秦信物。WASD移动，E交互。"
 npc_name = "太子丹"
 npc_dialogue = "太子丹低声交付最后的信物：此去秦境，只能以燕使身份入关。"
 npc_state_field = "has_mission_token"
 npc_quest_stage = "to_qin_checkpoint"
 npc_fate_delta = 3
 npc_relationship_delta = 5
+npc_feedback = "获得：入秦信物"
 portal_name = "秦境关隘"
 next_scene_path = "res://scene/qin_checkpoint.tscn"
 portal_required_field = "has_mission_token"
 portal_missing_message = "还未取得太子丹交付的入秦信物。"
 portal_quest_stage = "qin_checkpoint_guard"
 portal_chapter = 3
+portal_feedback = "前往：秦境关隘"

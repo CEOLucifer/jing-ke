@@ -29,7 +29,6 @@ var demo_completed: bool = false
 var ending_branch: String = ""
 
 
-# 重置新游戏状态。
 func reset_new_game() -> void:
 	last_scene_path = ""
 	dialogue_target = ""
@@ -54,3 +53,26 @@ func reset_new_game() -> void:
 	reached_qin_palace = false
 	demo_completed = false
 	ending_branch = ""
+
+
+func reset_demo_state() -> void:
+	last_scene_path = ""
+	dialogue_target = ""
+	entered_from_world = false
+	current_chapter = 1
+	quest_stage = "yan_camp_start"
+	has_dagger = false
+	has_map = false
+	has_mission_token = false
+	passed_qin_checkpoint = false
+	entered_xianyang = false
+	reached_qin_palace = false
+	demo_completed = false
+	ending_branch = ""
+	fate_value = 0
+	history_disturbance = 0
+	taizi_relationship = 0
+	player_hp = 100
+	player_energy = 80
+	player_status = "等待抉择"
+	latest_world_message = ""

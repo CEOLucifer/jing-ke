@@ -11,6 +11,7 @@ extends Node
 @export var npc_fate_delta := 0
 @export var npc_history_delta := 0
 @export var npc_relationship_delta := 0
+@export var npc_feedback := ""
 @export var portal_name := "下一场景"
 @export var next_scene_path := ""
 @export var portal_required_field := ""
@@ -19,6 +20,7 @@ extends Node
 @export var portal_chapter := 0
 @export var portal_state_field := ""
 @export var portal_state_value := true
+@export var portal_feedback := ""
 @export var is_final_scene := false
 
 
@@ -40,9 +42,11 @@ extends Node
 @onready var choice_c: Button = $"../CanvasLayer/ChoicePanel/ChoiceMargin/ChoiceVBox/ChoiceC"
 
 
-var npc_interacted := false
 var prompt_mode := ""
 var interaction_distance := 3.2
+var fade_layer: ColorRect
+var feedback_label: Label
+var feedback_tween: Tween
 
 
 func _ready() -> void:
@@ -52,9 +56,12 @@ func _ready() -> void:
 	choice_panel.visible = false
 	prompt_label.visible = false
 	message_button.pressed.connect(_hide_message)
-	choice_a.pressed.connect(_finish_demo.bind("立即出手", 12, 20, "刺秦骤起"))
-	choice_b.pressed.connect(_finish_demo.bind("等待更近时机", 6, 8, "屏息待发"))
-	choice_c.pressed.connect(_finish_demo.bind("放弃刺秦", -10, -5, "天命改道"))
+	choice_a.pressed.connect(_finish_demo.bind("立即出手", 12, 20, "立即出手"))
+	choice_b.pressed.connect(_finish_demo.bind("等待更近时机", 6, 8, "等待时机"))
+	choice_c.pressed.connect(_finish_demo.bind("放弃刺秦", -10, -5, "放弃刺秦"))
+	_create_runtime_layers()
+	_play_fade_in()
+	_show_feedback(scene_title)
 	_refresh_state_label()
 
 
@@ -83,7 +90,6 @@ func _process(_delta: float) -> void:
 
 
 func _interact_with_npc() -> void:
-	npc_interacted = true
 	if npc_state_field != "":
 		GameState.set(npc_state_field, npc_state_value)
 	if npc_quest_stage != "":
@@ -92,6 +98,9 @@ func _interact_with_npc() -> void:
 	GameState.history_disturbance += npc_history_delta
 	GameState.taizi_relationship += npc_relationship_delta
 	_refresh_state_label()
+
+	if npc_feedback != "":
+		_show_feedback(npc_feedback)
 
 	if is_final_scene:
 		_show_choices()
@@ -110,9 +119,19 @@ func _try_use_portal() -> void:
 		GameState.quest_stage = portal_quest_stage
 	if portal_chapter > 0:
 		GameState.current_chapter = portal_chapter
+	if portal_feedback != "":
+		_show_feedback(portal_feedback)
 
 	if next_scene_path != "":
-		get_tree().change_scene_to_file(next_scene_path)
+		change_scene_with_fade(next_scene_path)
+
+
+func change_scene_with_fade(path: String) -> void:
+	fade_layer.visible = true
+	fade_layer.modulate.a = 0.0
+	var tween := create_tween()
+	tween.tween_property(fade_layer, "modulate:a", 1.0, 0.42)
+	tween.tween_callback(func() -> void: get_tree().change_scene_to_file(path))
 
 
 func _show_message(title: String, body: String) -> void:
@@ -138,7 +157,7 @@ func _finish_demo(branch: String, fate_delta: int, disturbance_delta: int, endin
 	GameState.ending_branch = ending
 	GameState.quest_stage = "demo_completed"
 	GameState.latest_world_message = "秦王殿内，荆轲完成了刺秦演示分支：%s。" % branch
-	get_tree().change_scene_to_file("res://scene/demo_result.tscn")
+	change_scene_with_fade("res://scene/demo_result.tscn")
 
 
 func _refresh_state_label() -> void:
@@ -148,3 +167,49 @@ func _refresh_state_label() -> void:
 		GameState.fate_value,
 		GameState.history_disturbance,
 	]
+
+
+func _create_runtime_layers() -> void:
+	var canvas := get_node("../CanvasLayer")
+
+	fade_layer = ColorRect.new()
+	fade_layer.name = "RuntimeFadeLayer"
+	fade_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	fade_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
+	fade_layer.color = Color.BLACK
+	fade_layer.modulate.a = 1.0
+	canvas.add_child(fade_layer)
+
+	feedback_label = Label.new()
+	feedback_label.name = "RuntimeFeedbackLabel"
+	feedback_label.visible = false
+	feedback_label.set_anchors_preset(Control.PRESET_CENTER)
+	feedback_label.offset_left = -220
+	feedback_label.offset_top = -58
+	feedback_label.offset_right = 220
+	feedback_label.offset_bottom = 0
+	feedback_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	feedback_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	feedback_label.add_theme_font_size_override("font_size", 24)
+	canvas.add_child(feedback_label)
+
+
+func _play_fade_in() -> void:
+	fade_layer.visible = true
+	fade_layer.modulate.a = 1.0
+	var tween := create_tween()
+	tween.tween_property(fade_layer, "modulate:a", 0.0, 0.45)
+	tween.tween_callback(func() -> void: fade_layer.visible = false)
+
+
+func _show_feedback(message: String) -> void:
+	if feedback_tween != null and feedback_tween.is_valid():
+		feedback_tween.kill()
+
+	feedback_label.text = message
+	feedback_label.visible = true
+	feedback_label.modulate.a = 1.0
+	feedback_tween = create_tween()
+	feedback_tween.tween_interval(1.3)
+	feedback_tween.tween_property(feedback_label, "modulate:a", 0.0, 0.35)
+	feedback_tween.tween_callback(func() -> void: feedback_label.visible = false)
