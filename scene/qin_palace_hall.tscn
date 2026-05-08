@@ -225,12 +225,12 @@ script = ExtResource("4_return")
 [node name="FlowController" type="Node" parent="."]
 script = ExtResource("3_flow")
 scene_title = "第五幕 图穷匕见"
-objective_text = "当前目标：展开地图，做出刺秦抉择。WASD移动，E交互。"
+objective_text = "当前目标：靠近秦王，按 E 展开督亢地图。\n提示：你的选择将决定本次 Demo 的结局分支。"
 npc_name = "秦王"
-npc_dialogue = "荆轲缓缓展开督亢地图，匕首藏于卷轴尽头。殿内侍卫屏息，最后的抉择已经到来。"
+npc_dialogue = "秦王展卷而观，督亢地图徐徐展开。\n匕首藏于图穷之处，殿中一瞬寂静。\n\n此刻，你将如何改写天命？"
 npc_quest_stage = "qin_palace_choice"
 npc_history_delta = 5
-npc_feedback = "展开：督亢地图"
+npc_feedback = "秦王殿：图穷匕见"
 portal_name = "结算"
 next_scene_path = "res://scene/demo_result.tscn"
 portal_quest_stage = "demo_completed"
