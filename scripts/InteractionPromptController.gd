@@ -12,6 +12,12 @@ var can_talk := false
 var was_can_talk := false
 
 
+func _ready() -> void:
+	prompt_label.add_theme_font_size_override("font_size", 24)
+	prompt_label.add_theme_color_override("font_color", Color(1.0, 0.86, 0.45))
+	prompt_label.add_theme_stylebox_override("normal", _make_prompt_style())
+
+
 # 每帧检测玩家与太子丹的距离，并在范围内响应 E 对话。
 func _process(_delta: float) -> void:
 	if player == null or taizi_dan == null:
@@ -46,3 +52,21 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
 		if can_talk:
 			open_dialogue()
+
+
+func _make_prompt_style() -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.04, 0.03, 0.02, 0.78)
+	style.border_color = Color(0.84, 0.62, 0.28, 0.76)
+	style.set_border_width_all(1)
+	style.corner_radius_top_left = 5
+	style.corner_radius_top_right = 5
+	style.corner_radius_bottom_left = 5
+	style.corner_radius_bottom_right = 5
+	style.content_margin_left = 14
+	style.content_margin_right = 14
+	style.content_margin_top = 7
+	style.content_margin_bottom = 7
+	style.shadow_color = Color(0, 0, 0, 0.36)
+	style.shadow_size = 8
+	return style

@@ -4,6 +4,10 @@ extends PanelContainer
 signal quest_accepted
 
 
+const BUTTON_TEXTURE_NORMAL := preload("res://art/ui/main_menu/Menu_Form/button1_transparent.png")
+const BUTTON_TEXTURE_HOVER := preload("res://art/ui/main_menu/Menu_Form/button2_transparent.png")
+const BUTTON_TEXTURE_PRESSED := preload("res://art/ui/main_menu/Menu_Form/button3_transparent.png")
+
 @onready var npc_name_label: Label = $DialogueMargin/DialogueVBox/NpcNameLabel
 @onready var left_portrait_frame: Control = $DialogueMargin/DialogueVBox/PortraitRow/LeftPortraitFrame
 @onready var right_portrait_frame: Control = $DialogueMargin/DialogueVBox/PortraitRow/RightPortraitFrame
@@ -34,6 +38,7 @@ var breathe_tween: Tween
 # 初始化对话面板，并绑定按钮事件。
 func _ready() -> void:
 	visible = false
+	_apply_visual_theme()
 	npc_name_label.text = "太子丹"
 	option_button_1.pressed.connect(_on_option_pressed.bind(0))
 	option_button_2.pressed.connect(_on_option_pressed.bind(1))
@@ -189,3 +194,96 @@ func _finish_current_text() -> void:
 	is_typing = false
 	dialogue_text_label.text = current_full_text
 	dialogue_text_label.visible_characters = -1
+
+
+func _apply_visual_theme() -> void:
+	add_theme_stylebox_override("panel", _make_panel_style(Color(0.035, 0.027, 0.02, 0.9), Color(0.86, 0.62, 0.26, 0.82), 7))
+	npc_name_label.add_theme_font_size_override("font_size", 25)
+	npc_name_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.35))
+	dialogue_text_label.add_theme_font_size_override("font_size", 20)
+	dialogue_text_label.add_theme_color_override("font_color", Color(0.93, 0.87, 0.76))
+	continue_hint_label.add_theme_color_override("font_color", Color(0.63, 0.8, 0.74))
+
+	left_portrait_frame.add_theme_stylebox_override("panel", _make_panel_style(Color(0.04, 0.08, 0.075, 0.82), Color(0.47, 0.72, 0.66, 0.75), 6))
+	right_portrait_frame.add_theme_stylebox_override("panel", _make_panel_style(Color(0.09, 0.055, 0.025, 0.86), Color(0.86, 0.62, 0.26, 0.82), 6))
+
+	for button in [option_button_1, option_button_2, option_button_3, close_button]:
+		_register_plate_button(button)
+
+
+func _make_panel_style(bg_color: Color, border_color: Color, radius: int) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = bg_color
+	style.border_color = border_color
+	style.set_border_width_all(1)
+	style.corner_radius_top_left = radius
+	style.corner_radius_top_right = radius
+	style.corner_radius_bottom_left = radius
+	style.corner_radius_bottom_right = radius
+	style.shadow_color = Color(0, 0, 0, 0.38)
+	style.shadow_size = 10
+	return style
+
+
+func _make_button_style(color: Color) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = color
+	style.border_color = Color(0.74, 0.54, 0.22, 0.86)
+	style.set_border_width_all(1)
+	style.corner_radius_top_left = 5
+	style.corner_radius_top_right = 5
+	style.corner_radius_bottom_left = 5
+	style.corner_radius_bottom_right = 5
+	style.content_margin_top = 8
+	style.content_margin_bottom = 8
+	style.content_margin_left = 10
+	style.content_margin_right = 10
+	return style
+
+
+func _register_plate_button(button: Button) -> void:
+	var original_text := button.text
+	button.text = ""
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	var empty_style := StyleBoxEmpty.new()
+	for state in ["normal", "hover", "pressed", "focus", "disabled"]:
+		button.add_theme_stylebox_override(state, empty_style)
+
+	var plate := button.get_node_or_null("PlateTexture") as TextureRect
+	if plate == null:
+		plate = TextureRect.new()
+		plate.name = "PlateTexture"
+		plate.set_anchors_preset(Control.PRESET_FULL_RECT)
+		plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		plate.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		plate.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		button.add_child(plate)
+		button.move_child(plate, 0)
+	plate.texture = BUTTON_TEXTURE_NORMAL
+
+	var label := button.get_node_or_null("ButtonText") as Label
+	if label == null:
+		label = Label.new()
+		label.name = "ButtonText"
+		label.set_anchors_preset(Control.PRESET_FULL_RECT)
+		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.add_theme_font_size_override("font_size", 17)
+		label.add_theme_color_override("font_color", Color(0.98, 0.8, 0.42))
+		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.82))
+		label.add_theme_constant_override("shadow_offset_x", 2)
+		label.add_theme_constant_override("shadow_offset_y", 2)
+		button.add_child(label)
+	label.text = original_text
+
+	button.mouse_entered.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_HOVER))
+	button.mouse_exited.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_NORMAL))
+	button.button_down.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_PRESSED))
+	button.button_up.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_HOVER if button.get_global_rect().has_point(button.get_global_mouse_position()) else BUTTON_TEXTURE_NORMAL))
+
+
+func _set_button_plate(button: Button, texture: Texture2D) -> void:
+	var plate := button.get_node_or_null("PlateTexture") as TextureRect
+	if plate != null:
+		plate.texture = texture

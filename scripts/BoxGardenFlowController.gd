@@ -1,6 +1,11 @@
 extends Node
 
 
+const FRAME_TEXTURE := preload("res://art/ui/main_menu/Menu_Form/frame1_transparent.png")
+const BUTTON_TEXTURE_NORMAL := preload("res://art/ui/main_menu/Menu_Form/button1_transparent.png")
+const BUTTON_TEXTURE_HOVER := preload("res://art/ui/main_menu/Menu_Form/button2_transparent.png")
+const BUTTON_TEXTURE_PRESSED := preload("res://art/ui/main_menu/Menu_Form/button3_transparent.png")
+
 @export var scene_title := "箱庭场景"
 @export_multiline var objective_text := "当前目标：探索区域"
 @export var npc_name := "NPC"
@@ -27,6 +32,7 @@ extends Node
 @onready var player: Node3D = $"../Player"
 @onready var npc_marker: Node3D = $"../NpcMarker"
 @onready var portal_marker: Node3D = $"../PortalMarker"
+@onready var task_panel: PanelContainer = $"../CanvasLayer/TaskPanel"
 @onready var title_label: Label = $"../CanvasLayer/TaskPanel/TaskMargin/TaskVBox/TitleLabel"
 @onready var objective_label: Label = $"../CanvasLayer/TaskPanel/TaskMargin/TaskVBox/ObjectiveLabel"
 @onready var state_label: Label = $"../CanvasLayer/TaskPanel/TaskMargin/TaskVBox/StateLabel"
@@ -35,21 +41,27 @@ extends Node
 @onready var message_title: Label = $"../CanvasLayer/MessagePanel/MessageMargin/MessageVBox/MessageTitle"
 @onready var message_body: Label = $"../CanvasLayer/MessagePanel/MessageMargin/MessageVBox/MessageBody"
 @onready var message_button: Button = $"../CanvasLayer/MessagePanel/MessageMargin/MessageVBox/MessageButton"
+@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
 
 
 var prompt_mode := ""
 var interaction_distance := 3.2
 var fade_layer: ColorRect
+var feedback_panel: PanelContainer
 var feedback_label: Label
 var decision_overlay: ColorRect
 var decision_panel: PanelContainer
 var feedback_tween: Tween
+var feedback_panel_base_y := 0.0
 var decision_locked := false
+var task_panel_open := false
 
 
 func _ready() -> void:
+	_apply_ui_theme()
 	title_label.text = scene_title
 	objective_label.text = objective_text
+	task_panel.visible = false
 	message_panel.visible = false
 	prompt_label.visible = false
 	message_button.pressed.connect(_hide_message)
@@ -60,27 +72,31 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if message_panel.visible or decision_panel.visible:
-		return
-
+	var esc_held := Input.is_key_pressed(KEY_ESCAPE)
 	prompt_mode = ""
 	var prompt := ""
 
-	if npc_marker != null and player.global_position.distance_to(npc_marker.global_position) <= interaction_distance:
-		prompt_mode = "npc"
-		prompt = "按 E 与%s对话" % npc_name
-	elif portal_marker != null and player.global_position.distance_to(portal_marker.global_position) <= interaction_distance:
-		prompt_mode = "portal"
-		prompt = "按 E 前往%s" % portal_name
+	if not message_panel.visible and not decision_panel.visible:
+		if npc_marker != null and player.global_position.distance_to(npc_marker.global_position) <= interaction_distance:
+			prompt_mode = "npc"
+			prompt = "按 E 与%s对话" % npc_name
+		elif portal_marker != null and player.global_position.distance_to(portal_marker.global_position) <= interaction_distance:
+			prompt_mode = "portal"
+			prompt = "按 E 前往%s" % portal_name
 
-	prompt_label.visible = prompt != ""
-	prompt_label.text = prompt
-
-	if prompt_mode != "" and Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and not message_panel.visible and not decision_panel.visible:
 		if prompt_mode == "npc":
 			_interact_with_npc()
 		elif prompt_mode == "portal":
 			_try_use_portal()
+		else:
+			task_panel_open = not task_panel_open
+
+	task_panel.visible = task_panel_open and not esc_held and not message_panel.visible and not decision_panel.visible
+	_set_hud_buttons_visible(not esc_held and not message_panel.visible and not decision_panel.visible)
+
+	prompt_label.visible = prompt != "" and not esc_held
+	prompt_label.text = prompt
 
 
 func _interact_with_npc() -> void:
@@ -149,6 +165,12 @@ func _show_message(title: String, body: String) -> void:
 	message_title.text = title
 	message_body.text = body
 	message_panel.visible = true
+	message_panel.modulate.a = 0.0
+	message_panel.scale = Vector2(0.98, 0.98)
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(message_panel, "modulate:a", 1.0, 0.16)
+	tween.tween_property(message_panel, "scale", Vector2.ONE, 0.16)
 
 
 func _hide_message() -> void:
@@ -206,20 +228,38 @@ func _create_runtime_layers() -> void:
 	fade_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
 	fade_layer.color = Color.BLACK
 	fade_layer.modulate.a = 1.0
+	fade_layer.z_index = 200
 	canvas.add_child(fade_layer)
+
+	feedback_panel = PanelContainer.new()
+	feedback_panel.name = "RuntimeFeedbackPanel"
+	feedback_panel.visible = false
+	feedback_panel.set_anchors_preset(Control.PRESET_CENTER)
+	feedback_panel.offset_left = -290
+	feedback_panel.offset_top = -82
+	feedback_panel.offset_right = 290
+	feedback_panel.offset_bottom = -18
+	feedback_panel.z_index = 120
+	feedback_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.07, 0.045, 0.025, 0.9), Color(0.92, 0.66, 0.27, 0.88), 6))
+	canvas.add_child(feedback_panel)
+	feedback_panel_base_y = feedback_panel.position.y
+
+	var feedback_margin := MarginContainer.new()
+	feedback_margin.add_theme_constant_override("margin_left", 20)
+	feedback_margin.add_theme_constant_override("margin_top", 10)
+	feedback_margin.add_theme_constant_override("margin_right", 20)
+	feedback_margin.add_theme_constant_override("margin_bottom", 10)
+	feedback_panel.add_child(feedback_margin)
 
 	feedback_label = Label.new()
 	feedback_label.name = "RuntimeFeedbackLabel"
-	feedback_label.visible = false
-	feedback_label.set_anchors_preset(Control.PRESET_CENTER)
-	feedback_label.offset_left = -260
-	feedback_label.offset_top = -72
-	feedback_label.offset_right = 260
-	feedback_label.offset_bottom = -8
+	feedback_label.layout_mode = 2
 	feedback_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	feedback_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	feedback_label.add_theme_font_size_override("font_size", 26)
-	canvas.add_child(feedback_label)
+	feedback_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	feedback_label.add_theme_font_size_override("font_size", 24)
+	feedback_label.add_theme_color_override("font_color", Color(1.0, 0.88, 0.56))
+	feedback_margin.add_child(feedback_label)
 
 	_create_decision_overlay(canvas)
 
@@ -230,6 +270,7 @@ func _create_decision_overlay(canvas: CanvasLayer) -> void:
 	decision_overlay.visible = false
 	decision_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	decision_overlay.color = Color(0.0, 0.0, 0.0, 0.62)
+	decision_overlay.z_index = 60
 	canvas.add_child(decision_overlay)
 
 	decision_panel = PanelContainer.new()
@@ -241,6 +282,7 @@ func _create_decision_overlay(canvas: CanvasLayer) -> void:
 	decision_panel.offset_right = 330
 	decision_panel.offset_bottom = 215
 	decision_panel.pivot_offset = Vector2(330, 210)
+	decision_panel.z_index = 70
 	decision_panel.add_theme_stylebox_override("panel", _make_decision_panel_style())
 	canvas.add_child(decision_panel)
 
@@ -276,17 +318,7 @@ func _create_decision_overlay(canvas: CanvasLayer) -> void:
 
 
 func _make_decision_panel_style() -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.035, 0.028, 0.02, 0.94)
-	style.border_color = Color(0.78, 0.56, 0.23, 0.92)
-	style.set_border_width_all(2)
-	style.corner_radius_top_left = 8
-	style.corner_radius_top_right = 8
-	style.corner_radius_bottom_left = 8
-	style.corner_radius_bottom_right = 8
-	style.shadow_color = Color(0, 0, 0, 0.55)
-	style.shadow_size = 18
-	return style
+	return _make_panel_style(Color(0.035, 0.028, 0.02, 0.94), Color(0.78, 0.56, 0.23, 0.92), 8)
 
 
 func _make_decision_button(text: String, branch_key: String, fate_delta: int, disturbance_delta: int) -> Button:
@@ -295,9 +327,7 @@ func _make_decision_button(text: String, branch_key: String, fate_delta: int, di
 	button.custom_minimum_size = Vector2(0, 48)
 	button.add_theme_font_size_override("font_size", 19)
 	button.add_theme_color_override("font_color", Color(0.98, 0.84, 0.46))
-	button.add_theme_stylebox_override("normal", _make_button_style(Color(0.20, 0.13, 0.06, 0.96)))
-	button.add_theme_stylebox_override("hover", _make_button_style(Color(0.34, 0.22, 0.09, 0.98)))
-	button.add_theme_stylebox_override("pressed", _make_button_style(Color(0.12, 0.08, 0.04, 1.0)))
+	_register_plate_button(button)
 	button.pressed.connect(_finish_demo.bind(branch_key, fate_delta, disturbance_delta))
 	button.mouse_entered.connect(func() -> void:
 		var tween := create_tween()
@@ -359,9 +389,131 @@ func _show_feedback(message: String) -> void:
 		feedback_tween.kill()
 
 	feedback_label.text = message
-	feedback_label.visible = true
-	feedback_label.modulate.a = 1.0
+	feedback_panel.visible = true
+	feedback_panel.modulate.a = 0.0
+	feedback_panel.position.y = feedback_panel_base_y + 8
 	feedback_tween = create_tween()
-	feedback_tween.tween_interval(1.3)
-	feedback_tween.tween_property(feedback_label, "modulate:a", 0.0, 0.35)
-	feedback_tween.tween_callback(func() -> void: feedback_label.visible = false)
+	feedback_tween.set_parallel(true)
+	feedback_tween.tween_property(feedback_panel, "modulate:a", 1.0, 0.16)
+	feedback_tween.tween_property(feedback_panel, "position:y", feedback_panel_base_y, 0.16)
+	feedback_tween.chain().tween_interval(1.35)
+	feedback_tween.tween_property(feedback_panel, "modulate:a", 0.0, 0.32)
+	feedback_tween.tween_callback(func() -> void: feedback_panel.visible = false)
+
+
+func _apply_ui_theme() -> void:
+	task_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.03, 0.025, 0.02, 0.5), Color(0.9, 0.66, 0.25, 0.62), 6))
+	_add_frame_overlay(task_panel)
+	title_label.add_theme_font_size_override("font_size", 23)
+	title_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.35))
+	objective_label.add_theme_font_size_override("font_size", 16)
+	objective_label.add_theme_color_override("font_color", Color(0.92, 0.86, 0.74))
+	state_label.add_theme_font_size_override("font_size", 15)
+	state_label.add_theme_color_override("font_color", Color(0.67, 0.84, 0.78))
+
+	prompt_label.add_theme_font_size_override("font_size", 24)
+	prompt_label.add_theme_color_override("font_color", Color(1.0, 0.86, 0.45))
+	prompt_label.add_theme_stylebox_override("normal", _make_panel_style(Color(0.035, 0.028, 0.02, 0.62), Color(0.84, 0.62, 0.28, 0.62), 5))
+
+	message_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.035, 0.027, 0.02, 0.9), Color(0.86, 0.62, 0.26, 0.82), 7))
+	message_title.add_theme_font_size_override("font_size", 26)
+	message_title.add_theme_color_override("font_color", Color(1.0, 0.78, 0.35))
+	message_body.add_theme_font_size_override("font_size", 19)
+	message_body.add_theme_color_override("font_color", Color(0.93, 0.87, 0.76))
+	message_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	message_button.add_theme_font_size_override("font_size", 18)
+	message_button.add_theme_color_override("font_color", Color(1.0, 0.86, 0.48))
+	_register_plate_button(message_button)
+
+	for child in canvas_layer.get_children():
+		var button := child as Button
+		if button != null:
+			_register_plate_button(button)
+
+
+func _make_panel_style(bg_color: Color, border_color: Color, radius: int) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = bg_color
+	style.border_color = border_color
+	style.set_border_width_all(1)
+	style.corner_radius_top_left = radius
+	style.corner_radius_top_right = radius
+	style.corner_radius_bottom_left = radius
+	style.corner_radius_bottom_right = radius
+	style.shadow_color = Color(0, 0, 0, 0.38)
+	style.shadow_size = 10
+	return style
+
+
+func _set_hud_buttons_visible(is_visible: bool) -> void:
+	for child in canvas_layer.get_children():
+		var button := child as Button
+		if button != null:
+			button.visible = is_visible
+
+
+func _add_frame_overlay(panel: PanelContainer) -> void:
+	if panel.get_node_or_null("BronzeFrameOverlay") != null:
+		return
+
+	var frame := NinePatchRect.new()
+	frame.name = "BronzeFrameOverlay"
+	frame.texture = FRAME_TEXTURE
+	frame.draw_center = false
+	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	frame.set_anchors_preset(Control.PRESET_FULL_RECT)
+	frame.patch_margin_left = 86
+	frame.patch_margin_top = 70
+	frame.patch_margin_right = 86
+	frame.patch_margin_bottom = 70
+	panel.add_child(frame)
+	panel.move_child(frame, 0)
+
+
+func _register_plate_button(button: Button) -> void:
+	var original_text := button.text
+	button.text = ""
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	var empty_style := StyleBoxEmpty.new()
+	for state in ["normal", "hover", "pressed", "focus", "disabled"]:
+		button.add_theme_stylebox_override(state, empty_style)
+
+	var plate := button.get_node_or_null("PlateTexture") as TextureRect
+	if plate == null:
+		plate = TextureRect.new()
+		plate.name = "PlateTexture"
+		plate.set_anchors_preset(Control.PRESET_FULL_RECT)
+		plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		plate.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		plate.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		button.add_child(plate)
+		button.move_child(plate, 0)
+	plate.texture = BUTTON_TEXTURE_NORMAL
+
+	var label := button.get_node_or_null("ButtonText") as Label
+	if label == null:
+		label = Label.new()
+		label.name = "ButtonText"
+		label.set_anchors_preset(Control.PRESET_FULL_RECT)
+		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.add_theme_font_size_override("font_size", 17)
+		label.add_theme_color_override("font_color", Color(0.98, 0.8, 0.42))
+		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.82))
+		label.add_theme_constant_override("shadow_offset_x", 2)
+		label.add_theme_constant_override("shadow_offset_y", 2)
+		button.add_child(label)
+	if original_text != "":
+		label.text = original_text
+
+	button.mouse_entered.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_HOVER))
+	button.mouse_exited.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_NORMAL))
+	button.button_down.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_PRESSED))
+	button.button_up.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_HOVER if button.get_global_rect().has_point(button.get_global_mouse_position()) else BUTTON_TEXTURE_NORMAL))
+
+
+func _set_button_plate(button: Button, texture: Texture2D) -> void:
+	var plate := button.get_node_or_null("PlateTexture") as TextureRect
+	if plate != null:
+		plate.texture = texture
