@@ -41,6 +41,7 @@ var hud_open := false
 
 
 func _ready() -> void:
+	_configure_hud_layout()
 	operation_hint_panel.visible = false
 	quest_panel.visible = false
 	result_panel.visible = false
@@ -65,6 +66,39 @@ func _ready() -> void:
 
 	start_quest()
 	_show_feedback("第一幕 易水受命")
+
+
+func _configure_hud_layout() -> void:
+	operation_hint_panel.custom_minimum_size = Vector2(280, 244)
+	operation_hint_panel.position = Vector2(16, 16)
+	operation_hint_panel.size = Vector2(280, 244)
+
+	quest_panel.custom_minimum_size = Vector2(390, 292)
+	quest_panel.position = Vector2(16, 284)
+	quest_panel.size = Vector2(390, 292)
+	var quest_margin := quest_panel.get_node_or_null("QuestMargin") as MarginContainer
+	if quest_margin != null:
+		quest_margin.add_theme_constant_override("margin_left", 58)
+		quest_margin.add_theme_constant_override("margin_top", 86)
+		quest_margin.add_theme_constant_override("margin_right", 58)
+		quest_margin.add_theme_constant_override("margin_bottom", 38)
+	var quest_vbox := quest_panel.get_node_or_null("QuestMargin/QuestVBox") as VBoxContainer
+	if quest_vbox != null:
+		quest_vbox.add_theme_constant_override("separation", 6)
+
+	operation_hint_label.add_theme_font_size_override("font_size", 16)
+	operation_hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	operation_hint_label.clip_text = true
+	quest_objective_label.custom_minimum_size = Vector2(quest_objective_label.custom_minimum_size.x, 34)
+	quest_objective_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	quest_objective_label.clip_text = true
+	quest_status_label.custom_minimum_size = Vector2(quest_status_label.custom_minimum_size.x, 26)
+	quest_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	quest_status_label.clip_text = true
+
+	for button in [receive_dagger_button, receive_map_button]:
+		button.custom_minimum_size = Vector2(132, 36)
+	depart_button.custom_minimum_size = Vector2(depart_button.custom_minimum_size.x, 36)
 
 
 func _process(_delta: float) -> void:
@@ -225,17 +259,18 @@ func _show_feedback(message: String) -> void:
 
 func _apply_ui_theme() -> void:
 	operation_hint_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.02, 0.017, 0.014, 0.5), Color(0.8, 0.62, 0.28, 0.42), 6))
-	_add_frame_overlay(operation_hint_panel)
-	operation_hint_label.add_theme_font_size_override("font_size", 17)
+	operation_hint_label.add_theme_font_size_override("font_size", 16)
 	operation_hint_label.add_theme_color_override("font_color", Color(0.95, 0.9, 0.78, 0.9))
 	weapon_status_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.025, 0.02, 0.016, 0.62), Color(0.85, 0.64, 0.25, 0.7), 6))
 	weapon_status_label.add_theme_color_override("font_color", Color(1.0, 0.88, 0.56))
 
-	quest_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.02, 0.017, 0.014, 0.62), Color(0.9, 0.66, 0.25, 0.72), 6))
-	_add_frame_overlay(quest_panel)
-	quest_title_label.add_theme_font_size_override("font_size", 21)
+	quest_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.02, 0.017, 0.014, 0.68), Color(0.9, 0.66, 0.25, 0.0), 6))
+	_add_frame_texture(quest_panel)
+	quest_title_label.add_theme_font_size_override("font_size", 19)
 	quest_title_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.35))
+	quest_objective_label.add_theme_font_size_override("font_size", 15)
 	quest_objective_label.add_theme_color_override("font_color", Color(0.92, 0.86, 0.74))
+	quest_status_label.add_theme_font_size_override("font_size", 15)
 	quest_status_label.add_theme_color_override("font_color", Color(0.67, 0.84, 0.78))
 	result_panel.add_theme_stylebox_override("panel", _make_panel_style(Color(0.035, 0.027, 0.02, 0.9), Color(0.86, 0.62, 0.26, 0.82), 7))
 
@@ -273,20 +308,17 @@ func _make_button_style(color: Color) -> StyleBoxFlat:
 	return style
 
 
-func _add_frame_overlay(panel: PanelContainer) -> void:
-	if panel.get_node_or_null("BronzeFrameOverlay") != null:
+func _add_frame_texture(panel: PanelContainer) -> void:
+	if panel.get_node_or_null("BronzeFrameTexture") != null:
 		return
 
-	var frame := NinePatchRect.new()
-	frame.name = "BronzeFrameOverlay"
+	var frame := TextureRect.new()
+	frame.name = "BronzeFrameTexture"
 	frame.texture = FRAME_TEXTURE
-	frame.draw_center = false
 	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	frame.set_anchors_preset(Control.PRESET_FULL_RECT)
-	frame.patch_margin_left = 86
-	frame.patch_margin_top = 70
-	frame.patch_margin_right = 86
-	frame.patch_margin_bottom = 70
+	frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	frame.stretch_mode = TextureRect.STRETCH_SCALE
 	panel.add_child(frame)
 	panel.move_child(frame, 0)
 
@@ -310,6 +342,7 @@ func _register_plate_button(button: Button) -> void:
 		button.add_child(plate)
 		button.move_child(plate, 0)
 	plate.texture = BUTTON_TEXTURE_NORMAL
+	plate.stretch_mode = TextureRect.STRETCH_SCALE
 
 	var label := button.get_node_or_null("ButtonText") as Label
 	if label == null:
@@ -319,12 +352,18 @@ func _register_plate_button(button: Button) -> void:
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.clip_text = true
 		label.add_theme_font_size_override("font_size", 17)
 		label.add_theme_color_override("font_color", Color(0.98, 0.8, 0.42))
 		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.82))
 		label.add_theme_constant_override("shadow_offset_x", 2)
 		label.add_theme_constant_override("shadow_offset_y", 2)
 		button.add_child(label)
+	label.offset_left = 18
+	label.offset_right = -18
+	label.offset_top = 2
+	label.offset_bottom = -2
 	label.text = original_text
 
 	button.mouse_entered.connect(func() -> void: _set_button_plate(button, BUTTON_TEXTURE_HOVER))

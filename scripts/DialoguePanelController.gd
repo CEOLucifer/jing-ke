@@ -38,6 +38,7 @@ var breathe_tween: Tween
 # 初始化对话面板，并绑定按钮事件。
 func _ready() -> void:
 	visible = false
+	_configure_layout()
 	_apply_visual_theme()
 	npc_name_label.text = "太子丹"
 	option_button_1.pressed.connect(_on_option_pressed.bind(0))
@@ -118,11 +119,22 @@ func _start_typewriter(text: String, show_options_after: bool) -> void:
 func _finish_typewriter(show_options_after: bool) -> void:
 	is_typing = false
 	dialogue_text_label.visible_characters = -1
-	continue_hint_label.visible = show_options_after
+	continue_hint_label.visible = false
 
 	if show_options_after:
 		_set_speaker("jingke")
 		_show_options_with_animation()
+
+
+func _configure_layout() -> void:
+	custom_minimum_size = Vector2(custom_minimum_size.x, 480)
+	offset_top = -510
+	dialogue_text_label.custom_minimum_size = Vector2(dialogue_text_label.custom_minimum_size.x, 74)
+	dialogue_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	dialogue_text_label.clip_text = true
+
+	for button in [option_button_1, option_button_2, option_button_3, close_button]:
+		button.custom_minimum_size = Vector2(button.custom_minimum_size.x, 42)
 
 
 func _show_options_with_animation() -> void:
@@ -269,6 +281,8 @@ func _register_plate_button(button: Button) -> void:
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.clip_text = true
 		label.add_theme_font_size_override("font_size", 17)
 		label.add_theme_color_override("font_color", Color(0.98, 0.8, 0.42))
 		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.82))

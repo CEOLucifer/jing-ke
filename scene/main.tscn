@@ -181,10 +181,11 @@ ctrl_panel = NodePath("../../CanvasLayer/CtrlPanel")
 mouse_filter = 2
 
 [node name="OperationHintPanel" type="PanelContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(280, 244)
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 284.0
-offset_bottom = 278.0
+offset_right = 296.0
+offset_bottom = 260.0
 mouse_filter = 2
 
 [node name="OperationHintMargin" type="MarginContainer" parent="CanvasLayer/OperationHintPanel"]
@@ -196,7 +197,7 @@ theme_override_constants/margin_bottom = 12
 
 [node name="OperationHintLabel" type="Label" parent="CanvasLayer/OperationHintPanel/OperationHintMargin"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "操作提示
 左键点击地面：移动
 右键点击：跳跃 / 前跳
@@ -287,54 +288,60 @@ color = Color(0, 0, 0, 1)
 
 [node name="QuestPanel" type="PanelContainer" parent="CanvasLayer"]
 visible = false
+custom_minimum_size = Vector2(390, 292)
 offset_left = 16.0
-offset_top = 226.0
-offset_right = 380.0
-offset_bottom = 420.0
+offset_top = 284.0
+offset_right = 406.0
+offset_bottom = 576.0
 mouse_filter = 2
 
 [node name="QuestMargin" type="MarginContainer" parent="CanvasLayer/QuestPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 58
+theme_override_constants/margin_top = 86
+theme_override_constants/margin_right = 58
+theme_override_constants/margin_bottom = 38
 
 [node name="QuestVBox" type="VBoxContainer" parent="CanvasLayer/QuestPanel/QuestMargin"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
 [node name="QuestTitleLabel" type="Label" parent="CanvasLayer/QuestPanel/QuestMargin/QuestVBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 19
 text = "任务：刺秦前夜"
 
 [node name="QuestObjectiveLabel" type="Label" parent="CanvasLayer/QuestPanel/QuestMargin/QuestVBox"]
+custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 text = "目标：领取徐夫人匕首与督亢地图"
 autowrap_mode = 3
 
 [node name="QuestStatusLabel" type="Label" parent="CanvasLayer/QuestPanel/QuestMargin/QuestVBox"]
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 text = "状态：未完成"
 autowrap_mode = 3
 
 [node name="QuestButtonRow" type="HBoxContainer" parent="CanvasLayer/QuestPanel/QuestMargin/QuestVBox"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
 [node name="ReceiveDaggerButton" type="Button" parent="CanvasLayer/QuestPanel/QuestMargin/QuestVBox/QuestButtonRow"]
+custom_minimum_size = Vector2(132, 36)
 layout_mode = 2
 text = "领取匕首"
 
 [node name="ReceiveMapButton" type="Button" parent="CanvasLayer/QuestPanel/QuestMargin/QuestVBox/QuestButtonRow"]
+custom_minimum_size = Vector2(132, 36)
 layout_mode = 2
 text = "领取地图"
 
 [node name="DepartButton" type="Button" parent="CanvasLayer/QuestPanel/QuestMargin/QuestVBox"]
 visible = false
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 text = "启程前往秦国"
 
@@ -355,13 +362,14 @@ text = "与太子丹对话"
 
 [node name="DialoguePanel" type="PanelContainer" parent="CanvasLayer"]
 visible = false
+custom_minimum_size = Vector2(0, 480)
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 230.0
-offset_top = -270.0
+offset_top = -510.0
 offset_right = -230.0
 offset_bottom = -28.0
 grow_horizontal = 2
@@ -425,6 +433,7 @@ theme_override_font_sizes/font_size = 24
 text = "太子丹"
 
 [node name="DialogueTextLabel" type="Label" parent="CanvasLayer/DialoguePanel/DialogueMargin/DialogueVBox"]
+custom_minimum_size = Vector2(0, 74)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "荆卿，秦军压境，燕国已无退路。你可愿为天下一试？"
@@ -442,18 +451,22 @@ layout_mode = 2
 theme_override_constants/separation = 6
 
 [node name="OptionButton1" type="Button" parent="CanvasLayer/DialoguePanel/DialogueMargin/DialogueVBox/OptionContainer"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 text = "我愿前往秦国，改写天命。"
 
 [node name="OptionButton2" type="Button" parent="CanvasLayer/DialoguePanel/DialogueMargin/DialogueVBox/OptionContainer"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 text = "此行凶险，还需从长计议。"
 
 [node name="OptionButton3" type="Button" parent="CanvasLayer/DialoguePanel/DialogueMargin/DialogueVBox/OptionContainer"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 text = "若我失败，燕国将如何？"
 
 [node name="CloseButton" type="Button" parent="CanvasLayer/DialoguePanel/DialogueMargin/DialogueVBox"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 text = "关闭"
 
